@@ -1,0 +1,111 @@
+body {
+	-webkit-user-select: none;
+	min-width: 205px;
+}
+
+.content {
+	margin-top: 40px;
+}
+
+.bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 40px;
+	width: 100%;
+	background-color: #ccc;
+	-webkit-app-region: drag;
+	min-width: 205px;
+	z-index: 1;
+}
+
+.bar .button {
+	width: 26px;
+	height: 26px;
+	-webkit-app-region: no-drag;
+	background-image-color: #fff;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.bar .button.window {
+	margin: 7px;
+	margin-left: 0;
+	float: right;
+}
+
+.bar .button#closeBtn {
+	background-image: url("icons/ic_close_24px.svg");
+}
+
+.bar .button#minBtn {
+	background-image: url("icons/ic_remove_24px.svg");
+}
+
+.bar .button#maxBtn {
+	background-image: url("icons/ic_crop_din_24px.svg");
+}
+
+.bar .button.app {
+	margin: 7px;
+	margin-right: 0;
+	float: left;
+}
+
+.bar .button#addBtn {
+	background-image: url("icons/ic_add_24px.svg");
+	background-size: 105%;
+}
+
+.bar .button#prefsBtn {
+	background-image: url("icons/ic_build_24px.svg");
+	background-size: 80%;
+}
+
+.bar .button#configBtn {
+	background-image: url("icons/ic_settings_24px.svg");
+}
+
+#leftContentPane {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 60%;
+	height: 100%;
+	margin: 0;
+	padding-top: 40px;
+}
+
+#rightContentPane {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 40%;
+	height: 100%;
+	margin: 0;
+	padding-top: 40px;
+}
+
+.paneWrapper {
+	padding: 20px;
+	border: 1px solid black;
+	width: 100%;
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+}
+
+.paneWrapper:first-child {
+	float: left;
+}
+
+#todaySchedulePane {
+	min-height: 100%;
+}
+
+#calendarPane {
+	min-height: 50%;
+}
+
+#progressPane {
+	min-height: 50%;
+}

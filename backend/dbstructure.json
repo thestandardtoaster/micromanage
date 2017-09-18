@@ -1,0 +1,6 @@
+{
+	"projects": "++id, dateStart, dateEnd, time, &name, description",
+	"tasks": "++id, date, time, complete, name, description",
+	"relations": "++, taskId, projectId",
+	"events": "++id, date, duration, *reminders, name, description"
+}

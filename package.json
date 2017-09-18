@@ -1,0 +1,11 @@
+{
+  "name": "MicroManage",
+  "main": "./backend/main.js",
+  "scripts": {
+    "start": "electron . --inspect=5858"
+  },
+  "dependencies": {
+    "dexie": "^1.5.1",
+    "electron-fetch": "^1.1.0"
+  }
+}
