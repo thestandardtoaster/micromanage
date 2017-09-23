@@ -1,10 +1,10 @@
-module.exports = class Project {
+const PersistableEntity = require("../data/persistableEntity.js");
+
+module.exports = class MicroProject extends PersistableEntity {
 	constructor (dateStart, dateEnd, time, name, description){
-		this.type = "project";
-		this.start = dateStart;
-		this.end = dateEnd;
-		this.time = time;
-		this.name = name;
-		this.description = description;
+		super("project", name, description, db.projects);
+        this.start = dateStart;
+        this.end = dateEnd;
+        this.time = time;
 	}
-}
+};

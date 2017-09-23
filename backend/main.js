@@ -2,7 +2,6 @@ const electron = require('electron');
 const {ipcMain} = electron;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const path = require('path');
 
 let mainWindow;
 
@@ -17,6 +16,6 @@ app.on('ready', function(){
     createWindow();
 });
 
-ipcMain.on("reload", () => {
+ipcMain.on("reload", e => {
     mainWindow.loadURL("file:///" + __dirname + "/../client/index.html");
 });
