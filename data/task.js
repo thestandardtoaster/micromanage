@@ -8,7 +8,7 @@ module.exports = class MicroTask extends PersistableEntity {
         this.complete = complete;
     }
 
-    _construct(){
+    _construct() {
         let object = super._construct(true);
         object.date = this.date;
         object.duration = this.duration;
@@ -16,30 +16,30 @@ module.exports = class MicroTask extends PersistableEntity {
         return object;
     }
 
-    getFriendlyDuration(){
+    getFriendlyDuration() {
         let tempDuration = this.duration;
         let result = "";
-        let weeks = Math.floor(tempDuration/(60*24*7));
-        tempDuration -= weeks*(60*24*7);
-        let days = Math.floor(tempDuration/(60*24));
-        tempDuration -= days*(60*24);
-        let hours = Math.floor(tempDuration/60);
-        tempDuration -= hours*60;
+        let weeks = Math.floor(tempDuration / (60 * 24 * 7));
+        tempDuration -= weeks * (60 * 24 * 7);
+        let days = Math.floor(tempDuration / (60 * 24));
+        tempDuration -= days * (60 * 24);
+        let hours = Math.floor(tempDuration / 60);
+        tempDuration -= hours * 60;
         let minutes = tempDuration;
 
-        if(weeks > 0){
+        if (weeks > 0) {
             result += weeks;
             result += "w";
         }
-        if(days > 0){
+        if (days > 0) {
             result += days;
             result += "d";
         }
-        if(hours > 0){
+        if (hours > 0) {
             result += hours;
             result += h;
         }
-        if(minutes > 0){
+        if (minutes > 0) {
             result += minutes;
             result += "m";
         }

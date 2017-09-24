@@ -16,7 +16,7 @@ body {
 	background-color: #ccc;
 	-webkit-app-region: drag;
 	min-width: 205px;
-	z-index: 1;
+	z-index: 2;
 }
 
 .bar .button {
@@ -116,11 +116,63 @@ body {
     height: 100%;
 	position: absolute;
     visibility: hidden;
+	transition: 0.2s;
+	opacity: 0;
+    z-index: 1;
 }
 
 .overlay.visible {
     background-color: rgba(0, 0, 0, 0.8);
     visibility: visible;
+	transition: 0.2s;
+	opacity: 1;
+}
+
+.overlay .overlayContainer {
+    position: absolute;
+    width: 400px;
+    height: 120px;
+    margin-left: -200px;
+    margin-top: -20px;
+    left: 50%;
+    top: 50%;
+}
+
+.overlay .overlayContainer .overlayItem {
+    width: 120px;
+    height: 80px;
+    background: #fff;
+    border: 1px solid black;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 82px;
+    z-index: 2;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.overlay .overlayContainer .overlayItem:hover {
+    background: #ccc;
+}
+
+.overlay .overlayContainer .overlayForm {
+    padding: 10px;
+    background: #fff;
+}
+
+.overlay .overlayContainer .overlayForm label input {
+    margin-bottom: 10px;
+}
+
+.overlay .overlayContainer .overlayForm label textarea {
+    max-width: 380px;
+    max-lines: 3;
+}
+
+.overlay .overlayContainer .overlayForm label:last-child input {
+    margin-bottom: 0px;
 }
 
 .task-item {
@@ -130,6 +182,18 @@ body {
     border: 1px solid black;
 }
 
-.task-item span {
-    vertical-align: middle;
+.task-item > span {
+    vertical-align: -webkit-baseline-middle;
+    display: inline-block;
+    line-height: 30px;
+}
+
+.task-item > span:nth-child(2) {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.task-item > span:last-child {
+    float: right;
+    line-height: 30px;
+    margin-right: 10px;
 }

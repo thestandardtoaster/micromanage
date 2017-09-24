@@ -4,22 +4,59 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="css/style.css"/>
     <script id="taskTemplate" type="text/x-mustache-template">
-        {{#tasks}}
         <div class="task-item">
             <span>
                 <input title="Completion status" type="checkbox" value="{{complete}}"/>
-                {{name}}
+                <b>{{name}}</b>
+            </span>
+            <span>
+                {{description}}
             </span>
             <span>
                 {{getFriendlyDuration}}
             </span>
         </div>
-        {{/tasks}}
     </script>
 </head>
 <body>
 <div class="overlay" id="addOverlay">
+    <div class="overlayContainer">
+        <div class="overlayItem" id="addTaskItem">
+            New Task
+        </div>
+        <div class="overlayItem" id="addProjectItem">
+            New Project
+        </div>
+        <div class="overlayItem" id="addEventItem">
+            New Event
+        </div>
+    </div>
+</div>
+<div class="overlay" id="addTaskOverlay">
+    <div class="overlayContainer">
+        <div class="overlayForm">
+            <!-- FORM STUFF GOES HERE -->
+            <label>
+                Name:
+                <input type="text" id="taskNameField">
+            </label><br>
+            <label>
+                Description:<br>
+                <textarea id="taskDescriptionField"></textarea>
+            </label><br>
+            <label>
+                Date:
+                <input type="date" id="taskDateField">
+            </label><br>
+            <label>
+                Duration (minutes):
+                <input type="number" min=15 max=60 id="taskDurationField">
+            </label>
 
+            <input type="button" value="Save" id="saveTaskButton">
+            <input type="button" value="Cancel" id="cancelTaskButton">
+        </div>
+    </div>
 </div>
 <div class="bar" id="controlBar">
     <a href="#" class="button app" id="addBtn"></a>
@@ -34,6 +71,9 @@
     <div class="paneWrapper">
         <div id="todaySchedulePane">
             <h3>Today's Schedule</h3><br>
+            <div id="taskList">
+
+            </div>
         </div>
     </div>
 </div>
