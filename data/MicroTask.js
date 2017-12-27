@@ -1,8 +1,10 @@
-const PersistableEntity = require("../data/persistableEntity.js");
+const PersistableEntity = require("../data/persistableEntity");
+const DataAccess = require("../data/DataAccess");
 
 module.exports = class MicroTask extends PersistableEntity {
-    constructor(date, duration, complete, name, description) {
-        super("task", name, description, db.tasks);
+    constructor(date = Date.now(), duration = 0, complete= false, name = "", description = "") {
+        super("task", name, description);
+        DataAccess.registerTable(this.type, DataAccess.getDatabase().tasks);
         this.date = date;
         this.duration = duration;
         this.complete = complete;
@@ -37,7 +39,7 @@ module.exports = class MicroTask extends PersistableEntity {
         }
         if (hours > 0) {
             result += hours;
-            result += h;
+            result += "h";
         }
         if (minutes > 0) {
             result += minutes;

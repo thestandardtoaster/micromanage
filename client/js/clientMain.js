@@ -1,13 +1,11 @@
 // Libs
 const {remote, ipcRenderer} = require('electron');
-const fs = require('fs');
-const Dexie = require('dexie');
 const Mustache = require('mustache');
 
 // Datatypes
-const MicroTask = require('../data/task.js');
-const MicroProject = require('../data/project.js');
-const MicroEvent = require('../data/event.js');
+const {MicroEvent, MicroProject, MicroTask} = require("../data/datatypes");
+const MicroForm = require("./js/MicroForm");
+const DataAccess = require("../data/DataAccess");
 
 // templates
 let templates = new Map();
@@ -19,40 +17,32 @@ let eventCache = new Map();
 // DOM Parser
 let templateParser = new DOMParser();
 
+class NewTaskForm extends MicroForm {
+    constructor(element) {
+        super(element, new MicroTask());
+    }
+}
+
+let newTaskForm;
+
 const win = remote.getCurrentWindow();
 
-function addTask(t){
+function addTask(t) {
     let dom = runTemplate("task", t);
     taskCache.set(t, dom);
     let taskListElement = document.querySelector("#taskList");
-    if(!taskListElement.contains(taskCache.get(t), false)){
+    if (!taskListElement.contains(taskCache.get(t), false)) {
         taskListElement.appendChild(taskCache.get(t));
     }
 }
 
 function populateTasks() {
-    db.transaction('r', db.tasks, () => {
-        db.tasks.each(task => {
-            let newTask = new MicroTask(task.date, task.duration, task.complete, task.name, task.description);
-            addTask(newTask);
-        });
-    }).catch(e => console.log(e.stack));
-}
-
-function gatherTask(){
-    let taskNameField = document.querySelector("#taskNameField");
-    let taskDescriptionField = document.querySelector("#taskDescriptionField");
-    let taskDateField = document.querySelector("#taskDateField");
-    let taskDurationField = document.querySelector("#taskDurationField");
-
-    let name = taskNameField.value;
-    let description = taskDescriptionField.value;
-    let date = new Date(taskDateField.value);
-    let duration = parseInt(taskDurationField.value);
-
-    // TODO Data validation
-
-    return new MicroTask(date, duration, false, name, description);
+    // db.transaction('r', db.tasks, () => {
+    //     db.tasks.each(task => {
+    //         let newTask = new MicroTask(task.date, task.duration, task.complete, task.name, task.description);
+    //         addTask(newTask);
+    //     });
+    // }).catch(e => console.log(e.stack));
 }
 
 function runTemplate(template, object) {
@@ -64,7 +54,7 @@ function runTemplate(template, object) {
 function addListeners() {
     let minimizeBtn = document.getElementById("minBtn");
     minimizeBtn.onclick = e => {
-        win.minimize()
+        win.minimize();
     };
     let maximizeBtn = document.getElementById("maxBtn");
 
@@ -95,48 +85,22 @@ function addListeners() {
     };
 
     let addTaskItem = document.querySelector("#addTaskItem");
-    let addTaskOverlay = document.querySelector("#addTaskOverlay");
+    let addTaskForm = document.querySelector("#addTaskForm");
     addTaskItem.onclick = e => {
         e.stopPropagation();
         addOverlay.classList.remove("visible");
-        addTaskOverlay.classList.add("visible");
+        addTaskForm.classList.add("visible");
     };
-
-    let cancelTaskButton = document.querySelector("#cancelTaskButton");
-    cancelTaskButton.onclick = e => {
-        addTaskOverlay.classList.remove("visible");
-    };
-
-    let saveTaskButton = document.querySelector("#saveTaskButton");
-    saveTaskButton.onclick = e => {
-        let newTask = gatherTask();
-        addTask(newTask);
-        newTask.save();
-        addTaskOverlay.classList.remove("visible");
-    }
 }
 
-function initApp() {
+DataAccess.setOnReady(() => {
     // TODO Pre-load mustache templates here
     templates.set("task", document.querySelector("#taskTemplate").innerHTML);
     templates.forEach((value, key) => Mustache.parse(value));
 
+    newTaskForm = new NewTaskForm(document.querySelector("#addTaskForm"));
+
     populateTasks();
 
     addListeners();
-}
-
-const db = new Dexie('micromanage');
-
-fs.readFile('./backend/dbstructure.json', 'utf-8', (error, data) => {
-    if (error) {
-        console.error("Unable to load database format:" + error.stack);
-    } else {
-        try {
-            db.version(1).stores(JSON.parse(data));
-            db.open().then(initApp);
-        } catch (error) {
-            console.error("Unable to set database format:" + error.stack);
-        }
-    }
 });

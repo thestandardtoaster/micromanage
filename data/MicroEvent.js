@@ -1,8 +1,10 @@
 const PersistableEntity = require("../data/persistableEntity.js");
+const DataAccess = require("../data/DataAccess");
 
 module.exports = class MicroEvent extends PersistableEntity {
-    constructor(date, duration, reminders, name, description) {
-        super("event", name, description, db.events);
+    constructor(date = Date.now(), duration = 0, reminders = [], name = "", description = "") {
+        super("event", name, description);
+        DataAccess.registerTable(this.type, DataAccess.getDatabase().events);
         this.date = date;
         this.duration = duration;
         this.reminders = [];

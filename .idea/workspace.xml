@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3ffad58-6b46-436a-9e05-bfd41022d421" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/js/MicroForm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/js/field.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/datatypes.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/event.js" afterPath="$PROJECT_DIR$/data/MicroEvent.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/project.js" afterPath="$PROJECT_DIR$/data/MicroProject.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/task.js" afterPath="$PROJECT_DIR$/data/MicroTask.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/style.css" afterPath="$PROJECT_DIR$/client/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/main.js" afterPath="$PROJECT_DIR$/backend/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.html" afterPath="$PROJECT_DIR$/client/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/clientMain.js" afterPath="$PROJECT_DIR$/client/js/clientMain.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/task.js" afterPath="$PROJECT_DIR$/data/task.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/persistableEntity.js" afterPath="$PROJECT_DIR$/data/persistableEntity.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,129 +27,126 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.46628132">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/css/style.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="318">
-                  <caret line="156" column="21" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="clientMain.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/js/clientMain.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="319">
-                  <caret line="52" column="27" lean-forward="false" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
-                  <folding>
-                    <element signature="n#!!block;n#runTemplate#0" expanded="false" />
-                    <element signature="e#3920#4245#0" expanded="false" />
-                    <element signature="e#3937#4016#0" expanded="false" />
-                    <element signature="e#4022#4243#0" expanded="false" />
-                    <element signature="e#4036#4136#0" expanded="false" />
-                    <element signature="e#4151#4237#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="dbstructure.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/backend/dbstructure.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="80">
-                  <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="clientMain.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/js/clientMain.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="910">
-                  <caret line="107" column="6" lean-forward="true" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
-                  <folding>
-                    <element signature="n#!!block;n#populateTasks#0" expanded="false" />
-                    <element signature="e#891#1083#0" expanded="false" />
-                    <element signature="e#923#1075#0" expanded="false" />
-                    <element signature="n#!!block;n#runTemplate#0" expanded="false" />
-                    <element signature="e#2060#2090#0" expanded="false" />
-                    <element signature="e#2181#2307#0" expanded="false" />
-                    <element signature="e#2215#2254#0" expanded="false" />
-                    <element signature="e#2260#2301#0" expanded="false" />
-                    <element signature="e#2394#2422#0" expanded="false" />
-                    <element signature="e#2563#2754#0" expanded="false" />
-                    <element signature="e#2619#2682#0" expanded="false" />
-                    <element signature="e#2688#2748#0" expanded="false" />
-                    <element signature="e#2786#2841#0" expanded="false" />
-                    <element signature="n#!!block;n#initApp#0" expanded="false" />
-                    <element signature="e#3920#4245#0" expanded="false" />
-                    <element signature="e#3937#4016#0" expanded="false" />
-                    <element signature="e#4022#4243#0" expanded="false" />
-                    <element signature="e#4036#4136#0" expanded="false" />
-                    <element signature="e#4151#4237#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="task.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/task.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
-                  <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-                  <folding>
-                    <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#script#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#label#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#label#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#label#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#label#3;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-                    <element signature="n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MicroTask.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/MicroTask.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MicroProject.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/MicroProject.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="79" lean-forward="false" selection-start-line="6" selection-start-column="79" selection-end-line="6" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="36" />
+              <folding>
+                <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MicroEvent.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/MicroEvent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clientMain.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/clientMain.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MicroForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/MicroForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="26" column="63" lean-forward="true" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="88" lean-forward="true" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="field.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/field.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataAccess.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/DataAccess.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datatypes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/datatypes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="55" lean-forward="true" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>newTaskForm</find>
+      <find>db</find>
+      <find>New T</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -150,22 +155,37 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/data/entity.js" />
-        <option value="$PROJECT_DIR$/data/persistableEntity.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/data/project.js" />
         <option value="$PROJECT_DIR$/backend/dbstructure.json" />
-        <option value="$PROJECT_DIR$/data/event.js" />
-        <option value="$PROJECT_DIR$/backend/main.js" />
-        <option value="$PROJECT_DIR$/data/task.js" />
         <option value="$PROJECT_DIR$/client/css/style.css" />
+        <option value="$PROJECT_DIR$/client/js/field.js.css" />
+        <option value="$PROJECT_DIR$/data/project.js" />
+        <option value="$PROJECT_DIR$/data/event.js" />
+        <option value="$PROJECT_DIR$/data/task.js" />
+        <option value="$PROJECT_DIR$/client/js/form.js" />
+        <option value="$PROJECT_DIR$/data/Database.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/data/persistableEntity.js" />
+        <option value="$PROJECT_DIR$/data/MicroEvent.js" />
+        <option value="$PROJECT_DIR$/data/MicroProject.js" />
+        <option value="$PROJECT_DIR$/data/MicroTask.js" />
+        <option value="$PROJECT_DIR$/data/datatypes.js" />
+        <option value="$PROJECT_DIR$/data/DataAccess.js" />
+        <option value="$PROJECT_DIR$/client/js/field.js" />
         <option value="$PROJECT_DIR$/client/index.html" />
         <option value="$PROJECT_DIR$/client/js/clientMain.js" />
+        <option value="$PROJECT_DIR$/client/js/MicroForm.js" />
+        <option value="$PROJECT_DIR$/backend/main.js" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
-    <package-json value="$PROJECT_DIR$/package.json" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
@@ -195,6 +215,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -202,11 +223,37 @@
               <item name="micromanage" type="b2602c69:ProjectViewProjectNode" />
               <item name="micromanage" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="micromanage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micromanage" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micromanage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micromanage" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micromanage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micromanage" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micromanage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micromanage" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="micromanage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="micromanage" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -214,10 +261,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="tas&#9;FILE&#9;file://E:/chadcalendar/data/task.js&#10;index.ht&#9;FILE&#9;file://E:/chadcalendar/client/index.html" />
+    <property name="SearchEverywhereHistoryKey" value="form.&#9;FILE&#9;file://C:/Users/Josh/Desktop/micromanage/client/js/form.js&#10;tas&#9;FILE&#9;file://E:/chadcalendar/data/task.js&#10;index.ht&#9;FILE&#9;file://E:/chadcalendar/client/index.html" />
     <property name="javascript.nodejs.core.library.configured.version" value="6.11.3" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -231,10 +279,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.Unnamed">
-    <configuration name="Unnamed" type="js.build_tools.npm" factoryName="npm">
+  <component name="RunManager" selected="npm.Run Client">
+    <configuration name="Run Client" type="js.build_tools.npm" factoryName="npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="start" />
+      <arguments value="debug" />
       <node-interpreter value="project" />
       <envs />
     </configuration>
@@ -277,36 +326,61 @@
       <updated>1505715919508</updated>
       <workItem from="1505715923139" duration="1847000" />
       <workItem from="1506156252868" duration="19120000" />
-      <workItem from="1506181292236" duration="13239000" />
+      <workItem from="1506181292236" duration="13270000" />
+      <workItem from="1506321081569" duration="3912000" />
+      <workItem from="1506373741794" duration="6882000" />
+      <workItem from="1506445242375" duration="3660000" />
+      <workItem from="1514268209569" duration="2579000" />
+      <workItem from="1514272106660" duration="17306000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34206000" />
+    <option name="totallyTimeSpent" value="74913000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1800948" sideWeight="0.49566162" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177028" sideWeight="0.49566162" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1800948" sideWeight="0.5043384" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5021075" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.49789253" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991323" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39891306" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1800948" sideWeight="0.5043384" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5021075" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.49789253" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1800948" sideWeight="0.5043384" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177028" sideWeight="0.49566162" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991323" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -347,11 +421,100 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/backend/dbstructure.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2261">
+          <caret line="133" column="26" lean-forward="false" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/persistableEntity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/MicroTask.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="39" lean-forward="false" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/clientMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="20" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2496">
+          <caret line="156" column="21" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/dbstructure.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/clientMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/MicroTask.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2128">
           <caret line="133" column="26" lean-forward="false" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -367,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -375,18 +537,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="60" column="20" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!block;n#runTemplate#0" expanded="false" />
-            <element signature="e#3920#4245#0" expanded="false" />
-            <element signature="e#3937#4016#0" expanded="false" />
-            <element signature="e#4022#4243#0" expanded="false" />
-            <element signature="e#4036#4136#0" expanded="false" />
-            <element signature="e#4151#4237#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/task.js">
+    <entry file="file://$PROJECT_DIR$/data/MicroTask.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
@@ -399,24 +554,8 @@
         <state relative-caret-position="240">
           <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
           <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#3;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -426,24 +565,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#3;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -455,7 +578,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/task.js">
+    <entry file="file://$PROJECT_DIR$/data/MicroTask.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
@@ -467,14 +590,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1445">
           <caret line="85" column="32" lean-forward="false" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!block;n#runTemplate#0" expanded="false" />
-            <element signature="e#3920#4245#0" expanded="false" />
-            <element signature="e#3937#4016#0" expanded="false" />
-            <element signature="e#4022#4243#0" expanded="false" />
-            <element signature="e#4036#4136#0" expanded="false" />
-            <element signature="e#4151#4237#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -525,7 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="995" column="0" lean-forward="false" selection-start-line="995" selection-start-column="0" selection-end-line="995" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -533,7 +648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="1078" column="0" lean-forward="false" selection-start-line="1078" selection-start-column="0" selection-end-line="1078" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -541,7 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="204" column="8" lean-forward="false" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -549,31 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
           <caret line="204" column="12" lean-forward="false" selection-start-line="204" selection-start-column="12" selection-end-line="204" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="34" lean-forward="false" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" lean-forward="false" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" lean-forward="false" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -765,84 +853,205 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/main.js">
+    <entry file="file://$PROJECT_DIR$/client/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="156" column="21" lean-forward="false" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="449" column="78" lean-forward="true" selection-start-line="449" selection-start-column="78" selection-end-line="449" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/field.js.css" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/javascript/nodejs/library/node-globals-stub.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript6.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="423" column="9" lean-forward="false" selection-start-line="423" selection-start-column="9" selection-end-line="423" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/dbstructure.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="85">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/Josh/Desktop/micromanage">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/Dexie.js#BulkError#761;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#Debug#1117;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#Events#913;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#ModifyError#748;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#NO_CHAR_ARRAY#601;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#PSD#865;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#Promise#849;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#_global#406;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#arrayToObject#636;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#asap#443;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#assert#589;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#deepClone#555;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#delByKeyPath#519;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#derive#369;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#doFakeAutoComplete#419;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#errnames#772;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#exceptions#782;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#extend#346;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#flatten#667;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#fullNameExceptions#794;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#getArrayOf#620;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#getByKeyPath#483;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#getObjectDiff#570;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#hasOwn#655;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#hookCreatingChain#994;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#hookDeletingChain#1040;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#hookUpdatingChain#1017;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#isArray#333;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#keys#310;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#mapError#814;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#mirror#959;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#newScope#870;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#nop#950;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#override#392;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#promisableChain#1063;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#props#358;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#pureFunctionChain#971;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#rejection#703;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#setByKeyPath#501;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#setProp#320;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#shallowClone#537;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#slice#381;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#tryCatch#469;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#trycatcher#453;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#usePSD#880;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Dexie.js#wrap#859;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/Events.js#asap#23;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Events.js#exceptions#131;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Events.js#isArray#14;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Events.js#keys#8;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Events.js#mirror#58;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Events.js#nop#53;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Events.js#reverseStoppableEventChain#66;</node>
+            <node x="" y="">$PROJECT_DIR$/data/MicroEvent.js#PersistableEntity#6;</node>
+            <node x="" y="">$PROJECT_DIR$/client/js/MicroForm.js#Field#6;</node>
+            <node x="" y="">$PROJECT_DIR$/data/MicroProject.js#PersistableEntity#6;</node>
+            <node x="" y="">$PROJECT_DIR$/data/MicroTask.js#PersistableEntity#6;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/Promise.js#Events#225;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#PSD#5366;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#_global#62;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#callBoth#171;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#debug#257;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#deprecated#296;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#doFakeAutoComplete#8;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#extend#106;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#getArrayOf#94;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#getErrorWithStack#277;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#getPropertyDescriptor#71;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#mirror#181;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#newScope#25435;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#nop#166;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#prettyStack#264;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#props#38;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#reverseStoppableEventChain#138;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#setProp#53;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#tryCatch#28;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#usePSD#26127;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/Promise.js#wrap#24598;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/tools/build-utils.js#babel#168;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#build#364;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#buildAndWatch#5106;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#fs#57;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#path#286;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#promisifyAll#6;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#rollup#97;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#uglify#131;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#watch#249;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/tools/build-utils.js#zlib#205;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/tools/build.js#build#8;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/chaining-functions.js#callBoth#419;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#extend#8;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#hookCreatingChain#563;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#hookDeletingChain#1510;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#hookUpdatingChain#2112;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#mirror#59;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#nop#33;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#promisableChain#3441;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#pureFunctionChain#103;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/chaining-functions.js#reverseStoppableEventChain#3032;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/electron/cli.js#electron#25;C:/Users/Josh/Desktop/micromanage/node_modules/electron/cli.js#proc#55;</node>
+            <node x="" y="">$PROJECT_DIR$/client/js/clientMain.js#Dexie#91;C:/Users/Josh/Desktop/micromanage/client/js/clientMain.js#MicroForm#254;C:/Users/Josh/Desktop/micromanage/client/js/clientMain.js#Mustache#123;C:/Users/Josh/Desktop/micromanage/client/js/clientMain.js#datatypes.js#215;C:/Users/Josh/Desktop/micromanage/client/js/clientMain.js#electron#38;C:/Users/Josh/Desktop/micromanage/client/js/clientMain.js#fs#65;</node>
+            <node x="" y="">$PROJECT_DIR$/data/datatypes.js#MicroEvent#114;C:/Users/Josh/Desktop/micromanage/data/datatypes.js#MicroProject#57;C:/Users/Josh/Desktop/micromanage/data/datatypes.js#MicroTask#6;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/debug.js#debug#193;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/debug.js#deprecated#1658;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/debug.js#getErrorWithStack#567;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/debug.js#prettyStack#1210;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/dist/dexie.d.ts</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/electron/electron.d.ts#fs#311515;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/errors.js#BulkError#2359;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#ModifyError#2109;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#derive#9;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#errnames#2755;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#exceptions#3012;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#fullNameExceptions#4904;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#getErrorWithStack#52;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#mapError#4350;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#prettyStack#71;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/errors.js#setProp#17;</node>
+            <node x="" y="">$PROJECT_DIR$/client/js/field.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/@types/node/index.d.ts#child#30853;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#crypto#138290;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#events#24592;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#http#58262;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#net#30935;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#readline#60332;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#stream#24662;C:/Users/Josh/Desktop/micromanage/node_modules/@types/node/index.d.ts#tls#58192;</node>
+            <node x="" y="">$PROJECT_DIR$/client/index.html</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/extract-zip/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/electron/index.js#fs#4;C:/Users/Josh/Desktop/micromanage/node_modules/electron/index.js#path#27;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/electron-download/build/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/electron/install.js#download#261;C:/Users/Josh/Desktop/micromanage/node_modules/electron/install.js#extract#224;C:/Users/Josh/Desktop/micromanage/node_modules/electron/install.js#fs#151;C:/Users/Josh/Desktop/micromanage/node_modules/electron/install.js#os#174;C:/Users/Josh/Desktop/micromanage/node_modules/electron/install.js#path#197;C:/Users/Josh/Desktop/micromanage/node_modules/electron/install.js#version#98;</node>
+            <node x="" y="">$PROJECT_DIR$/backend/main.js#electron#38;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/mustache/bin/mustache#Mustache#78;C:/Users/Josh/Desktop/micromanage/node_modules/mustache/bin/mustache#fs#25;C:/Users/Josh/Desktop/micromanage/node_modules/mustache/bin/mustache#path#49;C:/Users/Josh/Desktop/micromanage/node_modules/mustache/bin/mustache#pkg#108;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/mustache/mustache.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/electron/electron.d.ts#version.replace#224000;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/mustache/package.json</node>
+            <node x="" y="">$PROJECT_DIR$/data/persistableEntity.js</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/promise-utils.js#Promise#7;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/promise-utils.js#rejection#34;</node>
+            <node x="" y="">$PROJECT_DIR$/client/css/style.css</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/src/utils.js#NO_CHAR_ARRAY#7686;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#_global#365;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#arrayToObject#2628;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#asap#2411;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#assert#2330;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#deepClone#5847;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#delByKeyPath#5433;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#derive#1432;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#doFakeAutoComplete#2229;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#extend#474;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#flatten#9109;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#getArrayOf#8318;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#getByKeyPath#3557;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#getObjectDiff#6445;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#getPropertyDescriptor#1822;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#hasOwn#762;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#isArray#329;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#keys#298;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#override#2132;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#props#837;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#setByKeyPath#4332;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#setProp#1054;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#shallowClone#5701;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#slice#2045;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#tryCatch#3411;C:/Users/Josh/Desktop/micromanage/node_modules/dexie/src/utils.js#trycatcher#3227;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/dexie/tools/watch.js#buildAndWatch#8;</node>
+            <node x="" y="">..</node>
+            <node x="" y="">MicroForm.js</node>
+            <node x="" y="">babel-core</node>
+            <node x="" y="">child_process</node>
+            <node x="" y="">datatypes.js</node>
+            <node x="" y="">electron</node>
+            <node x="" y="">es6-promisify-all</node>
+            <node x="" y="">fs</node>
+            <node x="" y="">node-watch</node>
+            <node x="" y="">os</node>
+            <node x="" y="">path</node>
+            <node x="" y="">rollup</node>
+            <node x="" y="">uglify-js</node>
+            <node x="" y="">zlib</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.23014256619144602" x="1179.0" y="1217.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/persistableEntity.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state relative-caret-position="34">
+          <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/style.css">
+    <entry file="file://$PROJECT_DIR$/data/MicroEvent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="156" column="21" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
+        <state relative-caret-position="102">
+          <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/MicroProject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="79" lean-forward="false" selection-start-line="6" selection-start-column="79" selection-end-line="6" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/MicroTask.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="50" lean-forward="true" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/datatypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="55" lean-forward="true" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/DataAccess.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/field.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="73" column="31" lean-forward="true" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
+        <state relative-caret-position="311">
+          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="36" />
           <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#label#3;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/js/clientMain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="52" column="27" lean-forward="false" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
-          <folding>
-            <element signature="n#!!block;n#runTemplate#0" expanded="false" />
-            <element signature="e#3920#4245#0" expanded="false" />
-            <element signature="e#3937#4016#0" expanded="false" />
-            <element signature="e#4022#4243#0" expanded="false" />
-            <element signature="e#4036#4136#0" expanded="false" />
-            <element signature="e#4151#4237#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="42">
+          <caret line="72" column="51" lean-forward="true" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/MicroForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="26" column="63" lean-forward="true" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="88" lean-forward="true" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,12 +1,9 @@
-const electron = require('electron');
-const {ipcMain} = electron;
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const {ipcMain, app, BrowserWindow} = require("electron");
 
 let mainWindow;
 
 function createWindow () {
-    mainWindow = new BrowserWindow({ frame: false });
+    mainWindow = new BrowserWindow({ frame: false, webPreferences: { devTools: true }});
     mainWindow.on('close', function(){ mainWindow = null });
     mainWindow.setMinimizable(true);
     mainWindow.loadURL("file:///" + __dirname + "/../client/index.html");

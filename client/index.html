@@ -19,6 +19,15 @@
     </script>
 </head>
 <body>
+<div class="bar" id="controlBar">
+    <a href="#" class="button app" id="addBtn"></a>
+    <a href="#" class="button app" id="prefsBtn"></a>
+    <a href="#" class="button app" id="configBtn"></a>
+
+    <a href="#" class="button window" id="closeBtn"></a>
+    <a href="#" class="button window" id="maxBtn"></a>
+    <a href="#" class="button window" id="minBtn"></a>
+</div>
 <div class="overlay" id="addOverlay">
     <div class="overlayContainer">
         <div class="overlayItem" id="addTaskItem">
@@ -32,40 +41,30 @@
         </div>
     </div>
 </div>
-<div class="overlay" id="addTaskOverlay">
+<div class="overlay" id="addTaskForm">
     <div class="overlayContainer">
         <div class="overlayForm">
-            <!-- FORM STUFF GOES HERE -->
             <label>
                 Name:
-                <input type="text" id="taskNameField">
+                <input data-fieldname="name" type="text">
             </label><br>
             <label>
                 Description:<br>
-                <textarea id="taskDescriptionField"></textarea>
+                <textarea data-fieldname="description"></textarea>
             </label><br>
             <label>
                 Date:
-                <input type="date" id="taskDateField">
+                <input data-fieldname="date" type="date">
             </label><br>
             <label>
                 Duration (minutes):
-                <input type="number" min=15 max=60 id="taskDurationField">
+                <input data-fieldname="duration" type="number" min=15 max=60>
             </label>
 
-            <input type="button" value="Save" id="saveTaskButton">
-            <input type="button" value="Cancel" id="cancelTaskButton">
+            <input type="button" value="Save" class="saveButton">
+            <input type="button" value="Cancel" class="cancelButton">
         </div>
     </div>
-</div>
-<div class="bar" id="controlBar">
-    <a href="#" class="button app" id="addBtn"></a>
-    <a href="#" class="button app" id="prefsBtn"></a>
-    <a href="#" class="button app" id="configBtn"></a>
-
-    <a href="#" class="button window" id="closeBtn"></a>
-    <a href="#" class="button window" id="maxBtn"></a>
-    <a href="#" class="button window" id="minBtn"></a>
 </div>
 <div id="leftContentPane">
     <div class="paneWrapper">
