@@ -1,8 +1,8 @@
-module.exports = class PersistableEntity {
-    constructor(type, name, description) {
-        this.type = type;
+let exporting = class PersistableEntity {
+    constructor(name, description) {
         this.name = name;
         this.description = description;
+        this.primaryId = -1;
     }
 
     _construct(callingFromSubclass) {
@@ -12,3 +12,7 @@ module.exports = class PersistableEntity {
         return {name: this.name, description: this.description};
     }
 };
+
+exporting.type = "";
+
+module.exports = exporting;

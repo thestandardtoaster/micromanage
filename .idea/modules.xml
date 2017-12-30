@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/chadcalendar.iml" filepath="$PROJECT_DIR$/.idea/chadcalendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/micromanage.iml" filepath="$PROJECT_DIR$/.idea/micromanage.iml" />
     </modules>
   </component>
 </project>

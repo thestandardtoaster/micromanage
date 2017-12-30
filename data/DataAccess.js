@@ -6,6 +6,7 @@ class DataAccess {
     constructor() {
         this.ready = false;
         this.db = new Dexie('micromanage');
+        this.onReady = [];
         fs.readFile('./backend/dbstructure.json', 'utf-8', (error, data) => {
             if (error) {
                 console.error("Unable to load database format:" + error.stack);
@@ -14,9 +15,7 @@ class DataAccess {
                     this.db.version(1).stores(JSON.parse(data));
                     this.db.open().then(() => {
                         this.ready = true;
-                        if (this.onReady !== undefined) {
-                            this.onReady();
-                        }
+                        this.onReady.forEach(item => item.call());
                     });
                 } catch (error) {
                     console.error("Unable to set database format:" + error.stack);
@@ -38,14 +37,19 @@ class DataAccess {
         return this.db;
     }
 
-    registerTable(type, table) {
+    registerType(type, table) {
+        if (this.tableMap.has(type)) {
+            console.warn("Duplicate datatype registration attempted for type " + type);
+            return;
+        }
         this.tableMap.set(type, table);
     }
 
     setOnReady(func) {
-        this.onReady = func;
         if (this.ready) {
-            this.onReady();
+            func();
+        } else {
+            this.onReady.push(func);
         }
     }
 
@@ -57,17 +61,25 @@ class DataAccess {
         let object = persistable._construct();
         let valid = undefined;
 
-        let table = this.tableMap.get(persistable.type);
-        this.db.transaction('rw', table, function () {
+        let table = this.tableMap.get(persistable.constructor.type);
+        return this.db.transaction('rw', table, function () {
             table.add(object);
         }).then(function () {
-            console.log(persistable.type + " " + persistable.name + " added to db.");
+            console.log(persistable.constructor.type + " " + persistable.name + " added to db.");
             valid = true;
         }).catch(error => {
-            console.log(persistable.type + " " + persistable.name + " not added to db; \n" + error.stack);
+            console.log(persistable.constructor.type + " " + persistable.name + " not added to db; \n" + error.stack);
             valid = false;
         });
-        return valid;
+    }
+
+    forAllOfType(type, operation) {
+        let table = this.tableMap.get(type);
+        if (table !== undefined) {
+            this.db.transaction('r', table, () => {
+                table.each(operation);
+            });
+        }
     }
 }
 

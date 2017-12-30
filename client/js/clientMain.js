@@ -37,12 +37,10 @@ function addTask(t) {
 }
 
 function populateTasks() {
-    // db.transaction('r', db.tasks, () => {
-    //     db.tasks.each(task => {
-    //         let newTask = new MicroTask(task.date, task.duration, task.complete, task.name, task.description);
-    //         addTask(newTask);
-    //     });
-    // }).catch(e => console.log(e.stack));
+    DataAccess.forAllOfType(MicroTask.type, task => {
+        let newTask = MicroTask.copy(task);
+        addTask(newTask);
+    });
 }
 
 function runTemplate(template, object) {
@@ -94,13 +92,19 @@ function addListeners() {
 }
 
 DataAccess.setOnReady(() => {
-    // TODO Pre-load mustache templates here
+    // Pre-load mustache templates here
     templates.set("task", document.querySelector("#taskTemplate").innerHTML);
     templates.forEach((value, key) => Mustache.parse(value));
 
     newTaskForm = new NewTaskForm(document.querySelector("#addTaskForm"));
+    newTaskForm.setPostPersist(newTask => {
+        addTask(MicroTask.copy(newTask));
+    });
 
     populateTasks();
 
     addListeners();
+
+    // We're done with loading, hide the loading overlay
+    document.querySelector(".loadingOverlay").classList.remove("visible");
 });

@@ -4,9 +4,9 @@ let mainWindow;
 
 function createWindow () {
     mainWindow = new BrowserWindow({ frame: false, webPreferences: { devTools: true }});
+    mainWindow.loadURL("file:///" + __dirname + "/../client/index.html");
     mainWindow.on('close', function(){ mainWindow = null });
     mainWindow.setMinimizable(true);
-    mainWindow.loadURL("file:///" + __dirname + "/../client/index.html");
     mainWindow.show();
 }
 app.on('ready', function(){

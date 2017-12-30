@@ -1,17 +1,16 @@
 const PersistableEntity = require("../data/persistableEntity.js");
 const DataAccess = require("../data/DataAccess");
 
-module.exports = class MicroEvent extends PersistableEntity {
+let exporting = class MicroEvent extends PersistableEntity {
     constructor(date = Date.now(), duration = 0, reminders = [], name = "", description = "") {
-        super("event", name, description);
-        DataAccess.registerTable(this.type, DataAccess.getDatabase().events);
+        super(name, description);
         this.date = date;
         this.duration = duration;
         this.reminders = [];
         this.reminders.concat(reminders);
     }
 
-    _construct(){
+    _construct() {
         let object = super._construct(true);
         object.date = this.date;
         object.duration = this.duration;
@@ -19,3 +18,9 @@ module.exports = class MicroEvent extends PersistableEntity {
         return object;
     }
 };
+
+exporting.type = "event";
+
+DataAccess.setOnReady(() => DataAccess.registerType(exporting.type, DataAccess.getDatabase().events));
+
+module.exports = exporting;

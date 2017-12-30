@@ -22,19 +22,26 @@ module.exports = class MicroForm {
         }
 
         container.querySelectorAll("input[type='button'].saveButton").forEach(saveButton => {
-            saveButton.addEventListener("click", e => {
-                if (this.validateData() && DataAccess.save(this.gatherObject())) {
-                    this.container.classList.remove("visible");
-                    this.fields.forEach(field => field.clear());
+            saveButton.addEventListener("click", () => {
+                let newObject = this.gatherObject();
+                if (this.validateData()) {
+                    DataAccess.save(newObject).then(() => {
+                        this.container.classList.remove("visible");
+                        this.fields.forEach(field => field.clear());
+                        this.postPersist(newObject);
+                    });
                 }
             });
         });
         container.querySelectorAll("input[type='button'].cancelButton").forEach(cancelButton => {
-            cancelButton.addEventListener("click", e => {
+            cancelButton.addEventListener("click", () => {
                 this.container.classList.remove("visible");
                 this.fields.forEach(field => field.clear());
             });
         });
+
+        this.postPersist = o => {
+        };
     }
 
     validateData() {
@@ -56,5 +63,9 @@ module.exports = class MicroForm {
                 return field;
             }
         }
+    }
+
+    setPostPersist(event) {
+        this.postPersist = event;
     }
 };

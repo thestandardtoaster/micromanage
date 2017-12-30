@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <script id="taskTemplate" type="text/x-mustache-template">
-        <div class="task-item">
-            <span>
-                <input title="Completion status" type="checkbox" value="{{complete}}"/>
-                <b>{{name}}</b>
-            </span>
-            <span>
-                {{description}}
-            </span>
-            <span>
-                {{getFriendlyDuration}}
-            </span>
-        </div>
-    </script>
 </head>
 <body>
+<div class="loadingOverlay visible">
+    <div class="loadingImage">
+        LOADING...
+    </div>
+</div>
 <div class="bar" id="controlBar">
     <a href="#" class="button app" id="addBtn"></a>
     <a href="#" class="button app" id="prefsBtn"></a>
@@ -84,6 +75,21 @@
         <div id="progressPane"></div>
     </div>
 </div>
-<script type="text/javascript" src="./js/clientMain.js"></script>
+
+<script id="taskTemplate" async type="text/x-mustache-template">
+    <div class="task-item">
+            <span>
+                <input title="Completion status" type="checkbox" value="{{complete}}"/>
+                <b>{{name}}</b>
+            </span>
+        <span>
+                {{description}}
+            </span>
+        <span>
+                {{getFriendlyDuration}}
+            </span>
+    </div>
+</script>
+<script type="text/javascript" async src="./js/clientMain.js"></script>
 </body>
 </html>

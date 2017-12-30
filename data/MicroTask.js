@@ -1,13 +1,20 @@
 const PersistableEntity = require("../data/persistableEntity");
 const DataAccess = require("../data/DataAccess");
 
-module.exports = class MicroTask extends PersistableEntity {
-    constructor(date = Date.now(), duration = 0, complete= false, name = "", description = "") {
-        super("task", name, description);
-        DataAccess.registerTable(this.type, DataAccess.getDatabase().tasks);
+let exporting = class MicroTask extends PersistableEntity {
+    constructor(date = Date.now(), duration = 0, complete = false, name = "", description = "") {
+        super(name, description);
         this.date = date;
         this.duration = duration;
         this.complete = complete;
+    }
+
+    static copy(other) {
+        let newObject = new MicroTask(other.date, other.duration, other.complete, other.name, other.description);
+        if (other.hasOwnProperty("id")) { // If the other object came from a database, we want the primary key
+            newObject.primaryId = other["id"];
+        }
+        return newObject;
     }
 
     _construct() {
@@ -48,3 +55,9 @@ module.exports = class MicroTask extends PersistableEntity {
         return result;
     }
 };
+
+exporting.type = "task";
+
+DataAccess.setOnReady(() => DataAccess.registerType(exporting.type, DataAccess.getDatabase().tasks));
+
+module.exports = exporting;
