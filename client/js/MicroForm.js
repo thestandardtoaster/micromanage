@@ -1,19 +1,17 @@
-const Field = require("./field.js");
+const Field = require("./Field.js");
 const DataAccess = require("../../data/DataAccess");
+const LocalCache = require("../../data/LocalCache");
 
 NodeList.prototype.forEach = Array.prototype.forEach;
 
 module.exports = class MicroForm {
-    constructor(container, emptyObject) {
+    constructor(container, type) {
         this.container = container; // make available to lambda scope later
         this.formElement = this.container.querySelector(".overlayForm");
-        if (this.constructor === MicroForm) {
-            throw TypeError("Attempt to instantiate abstract class MicroForm");
-        }
 
-        this.emptyObject = emptyObject;
-
+        this.type = type;
         this.fields = [];
+
         let elements = container.getElementsByTagName("label");
         for (let i = 0; i < elements.length; i++) {
             let inputElement = elements[i].querySelector("input");
@@ -25,17 +23,18 @@ module.exports = class MicroForm {
             saveButton.addEventListener("click", () => {
                 let newObject = this.gatherObject();
                 if (this.validateData()) {
-                    DataAccess.save(newObject).then(() => {
-                        this.container.classList.remove("visible");
+                    DataAccess.save(newObject).finally(() => {
+                        this.hide();
                         this.fields.forEach(field => field.clear());
                         this.postPersist(newObject);
+                        LocalCache.add(newObject);
                     });
                 }
             });
         });
         container.querySelectorAll("input[type='button'].cancelButton").forEach(cancelButton => {
             cancelButton.addEventListener("click", () => {
-                this.container.classList.remove("visible");
+                this.hide();
                 this.fields.forEach(field => field.clear());
             });
         });
@@ -45,12 +44,16 @@ module.exports = class MicroForm {
     }
 
     validateData() {
-        console.warn("MicroForm.validateData() not filled in by subclass");
+        this.fields.forEach(field => {
+            if (!field.validate()) {
+                return false;
+            }
+        });
         return true;
     }
 
     gatherObject() {
-        let newEmpty = Object.create(this.emptyObject);
+        let newEmpty = new this.type();
         for (let i = 0; i < this.fields.length; i++) {
             newEmpty[this.fields[i].getFieldName()] = this.fields[i].getValue();
         }
@@ -67,5 +70,13 @@ module.exports = class MicroForm {
 
     setPostPersist(event) {
         this.postPersist = event;
+    }
+
+    hide() {
+        this.container.classList.remove("visible");
+    }
+
+    show() {
+        this.container.classList.add("visible");
     }
 };

@@ -1,62 +1,39 @@
 // Libs
 const {remote, ipcRenderer} = require('electron');
-const Mustache = require('mustache');
+
+Date.prototype.sameDay = function (other) {
+    return this.getUTCFullYear() === other.getUTCFullYear() &&
+           this.getUTCMonth() === other.getUTCMonth() &&
+           this.getUTCDate() === other.getUTCDate();
+};
 
 // Datatypes
-const {MicroEvent, MicroProject, MicroTask} = require("../data/datatypes");
-const MicroForm = require("./js/MicroForm");
-const DataAccess = require("../data/DataAccess");
+const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
+const MicroForm = require('./js/MicroForm');
+const DataAccess = require('../data/DataAccess');
+const LocalCache = require('../data/LocalCache');
+const CacheView = require('../data/CacheView');
 
-// templates
-let templates = new Map();
-// local caches
-let taskCache = new Map();
-let projectCache = new Map();
-let eventCache = new Map();
-
-// DOM Parser
-let templateParser = new DOMParser();
-
-class NewTaskForm extends MicroForm {
-    constructor(element) {
-        super(element, new MicroTask());
-    }
-}
-
-let newTaskForm;
+let typeFormMap = new Map();
+let currentDay = new Date(Date.now());
+let taskView = new CacheView(document.querySelector("#taskList"),
+    "taskTemplate", task => {
+        return task.date.sameDay(currentDay);
+    }, MicroTask);
+taskView.setOnClick(data => {
+    alert(data.name + " " + data.description + " " + data.getFriendlyDuration());
+});
 
 const win = remote.getCurrentWindow();
 
-function addTask(t) {
-    let dom = runTemplate("task", t);
-    taskCache.set(t, dom);
-    let taskListElement = document.querySelector("#taskList");
-    if (!taskListElement.contains(taskCache.get(t), false)) {
-        taskListElement.appendChild(taskCache.get(t));
-    }
-}
-
-function populateTasks() {
-    DataAccess.forAllOfType(MicroTask.type, task => {
-        let newTask = MicroTask.copy(task);
-        addTask(newTask);
-    });
-}
-
-function runTemplate(template, object) {
-    let obj = templateParser.parseFromString(Mustache.render(templates.get(template), object), "text/html");
-    obj = obj.getElementsByTagName("body")[0].firstChild;
-    return obj;
-}
-
 function addListeners() {
     let minimizeBtn = document.getElementById("minBtn");
-    minimizeBtn.onclick = e => {
+    minimizeBtn.onclick = () => {
         win.minimize();
     };
     let maximizeBtn = document.getElementById("maxBtn");
 
-    maximizeBtn.onclick = e => {
+    maximizeBtn.onclick = () => {
         if (!win.isMaximized()) {
             win.maximize();
         } else {
@@ -65,7 +42,7 @@ function addListeners() {
     };
     let closeBtn = document.getElementById("closeBtn");
 
-    closeBtn.onclick = e => {
+    closeBtn.onclick = () => {
         win.close();
     };
     let addBtn = document.getElementById("addBtn");
@@ -74,7 +51,7 @@ function addListeners() {
     addBtn.onclick = e => {
         if (addOverlay.classList.contains("visible")) {
             addOverlay.classList.remove("visible");
-        } else {
+        } else if (document.querySelectorAll(".overlay.visible > .overlayForm").length < 1) {
             addOverlay.classList.add("visible");
         }
     };
@@ -82,29 +59,31 @@ function addListeners() {
         addOverlay.classList.remove("visible");
     };
 
-    let addTaskItem = document.querySelector("#addTaskItem");
-    let addTaskForm = document.querySelector("#addTaskForm");
-    addTaskItem.onclick = e => {
-        e.stopPropagation();
-        addOverlay.classList.remove("visible");
-        addTaskForm.classList.add("visible");
-    };
+    let types = [MicroTask, MicroProject];
+
+    types.forEach(type => {
+        let typeItemBase = "#add" + type.typeName.charAt(0).toUpperCase() + type.typeName.slice(1);
+        let typeItem = document.querySelector(typeItemBase + "Item");
+        let typeForm = document.querySelector(typeItemBase + "Form");
+        // might as well build the map here, because it's the first place we query for these
+        typeFormMap.set(type, new MicroForm(typeForm, type));
+        typeItem.onclick = e => {
+            e.stopPropagation();
+            addOverlay.classList.remove("visible");
+            typeFormMap.get(type).show();
+        }
+    });
 }
 
 DataAccess.setOnReady(() => {
-    // Pre-load mustache templates here
-    templates.set("task", document.querySelector("#taskTemplate").innerHTML);
-    templates.forEach((value, key) => Mustache.parse(value));
-
-    newTaskForm = new NewTaskForm(document.querySelector("#addTaskForm"));
-    newTaskForm.setPostPersist(newTask => {
-        addTask(MicroTask.copy(newTask));
-    });
-
-    populateTasks();
+    // Pre-load mustache templates
+    LocalCache.registerTypes(MicroProject, MicroTask);
+    CacheView.addTemplates("taskTemplate");
+    LocalCache.addView(taskView);
+    LocalCache.updateViews();
 
     addListeners();
 
-    // We're done with loading, hide the loading overlay
+    // Done with loading, hide the loading overlay
     document.querySelector(".loadingOverlay").classList.remove("visible");
 });

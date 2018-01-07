@@ -1,5 +1,5 @@
-const PersistableEntity = require("../data/persistableEntity.js");
-const DataAccess = require("../data/DataAccess");
+const PersistableEntity = require("../PersistableEntity.js");
+const DataAccess = require("../DataAccess");
 
 let exporting = class MicroEvent extends PersistableEntity {
     constructor(date = Date.now(), duration = 0, reminders = [], name = "", description = "") {
@@ -19,8 +19,8 @@ let exporting = class MicroEvent extends PersistableEntity {
     }
 };
 
-exporting.type = "event";
+exporting.typeName = "event";
 
-DataAccess.setOnReady(() => DataAccess.registerType(exporting.type, DataAccess.getDatabase().events));
+DataAccess.setOnReady(() => DataAccess.registerType(exporting, DataAccess.getDatabase().events));
 
 module.exports = exporting;

@@ -7,7 +7,7 @@
 <body>
 <div class="loadingOverlay visible">
     <div class="loadingImage">
-        LOADING...
+        Loading...
     </div>
 </div>
 <div class="bar" id="controlBar">
@@ -33,28 +33,49 @@
     </div>
 </div>
 <div class="overlay" id="addTaskForm">
-    <div class="overlayContainer">
-        <div class="overlayForm">
-            <label>
-                Name:
-                <input data-fieldname="name" type="text">
-            </label><br>
-            <label>
-                Description:<br>
-                <textarea data-fieldname="description"></textarea>
-            </label><br>
-            <label>
-                Date:
-                <input data-fieldname="date" type="date">
-            </label><br>
-            <label>
-                Duration (minutes):
-                <input data-fieldname="duration" type="number" min=15 max=60>
-            </label>
+    <div class="overlayForm">
+        <label>
+            Name:
+            <input data-fieldname="name" type="text"/>
+        </label><br>
+        <label>
+            Description:<br>
+            <textarea data-fieldname="description"></textarea>
+        </label><br>
+        <label>
+            Date:
+            <input data-fieldname="date" type="date"/>
+        </label><br>
+        <label>
+            Duration (minutes):
+            <input data-fieldname="duration" type="number" min=15 max=60/>
+        </label>
 
-            <input type="button" value="Save" class="saveButton">
-            <input type="button" value="Cancel" class="cancelButton">
-        </div>
+        <input type="button" value="Save" class="saveButton"/>
+        <input type="button" value="Cancel" class="cancelButton"/>
+    </div>
+</div>
+<div class="overlay" id="addProjectForm">
+    <div class="overlayForm">
+        <label>
+            Name:
+            <input date-fieldname="name" type="text"/>
+        </label><br>
+        <label>
+            Description:<br>
+            <textarea data-fieldname="description"></textarea>
+        </label><br>
+        <label>
+            Start Date:
+            <input data-fieldname="start" type="date"/>
+        </label><br>
+        <label>
+            End Date:
+            <input data-fieldname="end" type="date"/>
+        </label><br>
+
+        <input type="button" value="Save" class="saveButton"/>
+        <input type="button" value="Cancel" class="cancelButton"/>
     </div>
 </div>
 <div id="leftContentPane">
@@ -78,16 +99,16 @@
 
 <script id="taskTemplate" async type="text/x-mustache-template">
     <div class="task-item">
-            <span>
-                <input title="Completion status" type="checkbox" value="{{complete}}"/>
-                <b>{{name}}</b>
-            </span>
         <span>
-                {{description}}
-            </span>
+            <input title="Completion status" type="checkbox" value="{{complete}}"/>
+            <b>{{name}}</b>
+        </span>
         <span>
-                {{getFriendlyDuration}}
-            </span>
+            {{description}}
+        </span>
+        <span>
+            {{getFriendlyDuration}}
+        </span>
     </div>
 </script>
 <script type="text/javascript" async src="./js/clientMain.js"></script>

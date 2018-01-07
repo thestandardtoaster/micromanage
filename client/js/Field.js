@@ -10,6 +10,10 @@ module.exports = class Field {
         }
     }
 
+    validate() {
+        return true;
+    }
+
     getValue() {
         switch (this.inputElement.type) {
             case "text":

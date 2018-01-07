@@ -1,5 +1,5 @@
-const PersistableEntity = require("../data/persistableEntity.js");
-const DataAccess = require("../data/DataAccess");
+const PersistableEntity = require("../PersistableEntity.js");
+const DataAccess = require("../DataAccess");
 
 let exporting = class MicroProject extends PersistableEntity {
     constructor(dateStart = Date.now(), dateEnd = Date.now(), duration = 0, name = "", description = "") {
@@ -10,8 +10,8 @@ let exporting = class MicroProject extends PersistableEntity {
     }
 };
 
-exporting.type = "project";
+exporting.typeName = "project";
 
-DataAccess.setOnReady(() => DataAccess.registerType(exporting.type, DataAccess.getDatabase().projects));
+DataAccess.setOnReady(() => DataAccess.registerType(exporting, DataAccess.getDatabase().projects));
 
 module.exports = exporting;

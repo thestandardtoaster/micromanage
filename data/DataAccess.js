@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Dexie = require('dexie');
-const PersistableEntity = require("../data/persistableEntity.js");
+const PersistableEntity = require("./PersistableEntity.js");
 
 class DataAccess {
     constructor() {
@@ -13,7 +13,9 @@ class DataAccess {
             } else {
                 try {
                     this.db.version(1).stores(JSON.parse(data));
-                    this.db.open().then(() => {
+                    this.db.open().catch(error => {
+                        console.error("Unable to open database " + error.stack);
+                    }).finally(() => {
                         this.ready = true;
                         this.onReady.forEach(item => item.call());
                     });
@@ -55,21 +57,32 @@ class DataAccess {
 
     save(persistable) {
         if (!(persistable instanceof PersistableEntity)) {
-            console.error("Attempted to save object of non-persistable type " + persistable.type + ".");
-            return false;
+            throw new TypeError("Attempted to save object of non-persistable type " + persistable.constructor + ".");
         }
         let object = persistable._construct();
-        let valid = undefined;
 
-        let table = this.tableMap.get(persistable.constructor.type);
+        let table = this.tableMap.get(persistable.constructor);
         return this.db.transaction('rw', table, function () {
             table.add(object);
         }).then(function () {
             console.log(persistable.constructor.type + " " + persistable.name + " added to db.");
-            valid = true;
         }).catch(error => {
-            console.log(persistable.constructor.type + " " + persistable.name + " not added to db; \n" + error.stack);
-            valid = false;
+            console.log(persistable.constructor.type + " " + persistable.name + " not added to db. \n" + error.stack);
+        });
+    }
+
+    delete(persistable) {
+        if (!(persistable instanceof PersistableEntity)) {
+            throw new TypeError("Attempted to delete object of non-persistable type " + persistable.constructor + ".");
+        }
+
+        let table = this.tableMap.get(persistable.constructor);
+        return this.db.transaction('rw', table, function () {
+            table.delete(table.get({name: persistable.name}));
+        }).then(function () {
+            console.log(persistable.constructor.type + " " + persistable.name + " deleted from db.");
+        }).catch(error => {
+            console.log(persistable.constructor.type + " " + persistable.name + " not deleted from db. \n" + error.stack);
         });
     }
 

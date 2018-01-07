@@ -153,22 +153,28 @@ body {
     background: #ccc;
 }
 
-.overlay .overlayContainer .overlayForm {
+.overlay .overlayForm {
     padding: 10px;
     background: #fff;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 110%;
 }
 
-.overlay .overlayContainer .overlayForm label input {
+.overlay .overlayForm label input {
     margin-bottom: 10px;
 }
 
-.overlay .overlayContainer .overlayForm label textarea {
+.overlay .overlayForm label textarea {
     max-width: 380px;
     max-lines: 3;
 }
 
-.overlay .overlayContainer .overlayForm label:last-child input {
-    margin-bottom: 0px;
+.overlay .overlayForm label:last-child input {
+    margin-bottom: 0;
 }
 
 .task-item {
@@ -176,6 +182,7 @@ body {
     padding: auto;
     margin-bottom: 10px;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .task-item > span {
