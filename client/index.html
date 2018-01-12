@@ -33,10 +33,10 @@
     </div>
 </div>
 <div class="overlay" id="addTaskForm">
-    <div class="overlayForm">
+    <form class="overlayForm">
         <label>
             Name:
-            <input data-fieldname="name" type="text"/>
+            <input data-fieldname="name" data-validation="notEmpty" type="text"/>
         </label><br>
         <label>
             Description:<br>
@@ -53,7 +53,7 @@
 
         <input type="button" value="Save" class="saveButton"/>
         <input type="button" value="Cancel" class="cancelButton"/>
-    </div>
+    </form>
 </div>
 <div class="overlay" id="addProjectForm">
     <div class="overlayForm">
