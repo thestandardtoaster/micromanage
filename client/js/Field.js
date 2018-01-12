@@ -2,7 +2,7 @@ module.exports = class Field {
     constructor(input) {
         this.inputElement = input;
         if (input.parentElement.nodeName !== "LABEL") {
-            console.warn("Field not surrounded by label element, could not create validation component.  Things will probably break");
+            console.warn("Field not surrounded by label element, could not create validation component.");
         } else {
             this.validationElement = document.createElement("div");
             this.validationElement.classList.add("validationStatus");
@@ -19,13 +19,10 @@ module.exports = class Field {
             case "text":
             case "textarea":
                 return this.inputElement.value;
-                break;
             case "number":
                 return parseInt(this.inputElement.value);
-                break;
             case "date":
-                return new Date(this.inputElement.value);
-                break;
+                return new Date(Date.parse(this.inputElement.value + "MST"));
             default:
                 console.warn("Unable to retrieve value from field " + this.inputElement.parentElement().textContent);
                 break;
