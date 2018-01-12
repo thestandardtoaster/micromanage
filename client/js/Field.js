@@ -24,7 +24,24 @@ module.exports = class Field {
             case "number":
                 return parseInt(this.inputElement.value);
             case "date":
-                return new Date(Date.parse(this.inputElement.value + "MST"));
+                let utcOffset = -(new Date().getTimezoneOffset());
+                let hoursOffset = Math.floor(utcOffset / 60);
+                let minutesOffset = utcOffset % 60;
+                let offsetString = " GMT";
+                if (hoursOffset < 0) {
+                    offsetString += '-';
+                    hoursOffset = Math.abs(hoursOffset);
+                }
+                if (hoursOffset < 10) {
+                    offsetString += '0';
+                }
+                offsetString += hoursOffset;
+                if (minutesOffset === 0) {
+                    offsetString += "00";
+                } else {
+                    offsetString += minutesOffset;
+                }
+                return new Date(Date.parse(this.inputElement.value + offsetString));
             default:
                 console.warn("Unable to retrieve value from field " + this.inputElement.parentElement().textContent);
                 break;
