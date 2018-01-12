@@ -8,6 +8,8 @@ module.exports = class Field {
             this.validationElement.classList.add("validationStatus");
             input.parentElement.appendChild(this.validationElement);
         }
+        this.fieldName = this.inputElement.getAttribute("data-fieldname");
+        this.validation = this.inputElement.getAttribute("data-validation");
     }
 
     validate() {
@@ -30,7 +32,7 @@ module.exports = class Field {
     }
 
     getFieldName() {
-        return this.inputElement.getAttribute("data-fieldname");
+        return this.fieldName;
     }
 
     clear() {
