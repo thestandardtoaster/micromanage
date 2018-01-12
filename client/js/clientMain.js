@@ -3,8 +3,8 @@ const {remote, ipcRenderer} = require('electron');
 
 Date.prototype.sameDay = function (other) {
     return this.getUTCFullYear() === other.getUTCFullYear() &&
-           this.getUTCMonth() === other.getUTCMonth() &&
-           this.getUTCDate() === other.getUTCDate();
+        this.getUTCMonth() === other.getUTCMonth() &&
+        this.getUTCDate() === other.getUTCDate();
 };
 
 // Datatypes
@@ -20,6 +20,7 @@ let taskView = new CacheView(document.querySelector("#taskList"),
     "taskTemplate", task => {
         return task.date.sameDay(currentDay);
     }, MicroTask);
+taskView.comparator = (a, b) => a.name.localeCompare(b.name); // sort by name
 taskView.setOnClick(data => {
     alert(data.name + " " + data.description + " " + data.getFriendlyDuration());
 });
