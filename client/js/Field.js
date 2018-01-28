@@ -1,6 +1,9 @@
+let Validation = require("Validation");
+
 module.exports = class Field {
-    constructor(input) {
+    constructor(type, input) {
         this.inputElement = input;
+        this.type = type;
         if (input.parentElement.nodeName !== "LABEL") {
             console.warn("Field not surrounded by label element, could not create validation component.");
         } else {
@@ -9,11 +12,12 @@ module.exports = class Field {
             input.parentElement.appendChild(this.validationElement);
         }
         this.fieldName = this.inputElement.getAttribute("data-fieldname");
-        this.validation = this.inputElement.getAttribute("data-validation");
+        let validationString = this.inputElement.getAttribute("data-validation");
+        this.validator = new Validation(this, validationString);
     }
 
     validate() {
-        return true;
+        return this.validator.run();
     }
 
     getValue() {
@@ -22,7 +26,7 @@ module.exports = class Field {
             case "textarea":
                 return this.inputElement.value;
             case "number":
-                return parseInt(this.inputElement.value);
+                return parseFloat(this.inputElement.value);
             case "date":
                 let utcOffset = -(new Date().getTimezoneOffset());
                 let hoursOffset = Math.floor(utcOffset / 60);
@@ -46,6 +50,10 @@ module.exports = class Field {
                 console.warn("Unable to retrieve value from field " + this.inputElement.parentElement().textContent);
                 break;
         }
+    }
+
+    getType(){
+        return this.type;
     }
 
     getFieldName() {

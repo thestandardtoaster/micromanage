@@ -72,6 +72,10 @@ class LocalCache {
             view.types.forEach(type => this.views[index].addItems(this.typeCacheMap.get(type)));
         }
     }
+
+    forAllOfType(type, action){
+        this.typeCacheMap.get(type).forEach(action);
+    }
 }
 
 let exporting = LocalCache.getSingleton();
