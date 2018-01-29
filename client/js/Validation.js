@@ -11,14 +11,13 @@ let exporting = class Validation {
         this.field = field;
 
         // Parse the validation input
-        let args = args.split(' ');
+        args = args.split(' ');
         args.forEach(arg => {
-            if (arg.substr(0, 8) === "nonempty") {   // form: nonempty
+            if (arg.substr(0, 8) === "notempty") {   // form: notempty
                 this.validators.push({
                     type: ValidationTypes.NotEmpty,
-                    run: function(f){
-                        return !!f.getValue();
-
+                    run: function (f) {
+                        return !f.isEmpty();
                     },
                 });
             } else if (arg.substr(0, 3) === "in[") { // form: in[x,y]
@@ -31,27 +30,26 @@ let exporting = class Validation {
                         type: ValidationTypes.InRange,
                         min: min,
                         max: max,
-                        run: function(f){
+                        run: function (f) {
                             return min <= f.getValue() && max >= f.getValue();
-                        }
+                        },
                     });
                 }
-            } else if (arg === "unique") {
+            } else if (arg === "unique") {           // form: unique
                 this.validators.push({
-                    run: function(f){
+                    run: function (f) {
+                        let result = true;
                         LocalCache.forAllOfType(f.getType(), item => {
-                            if(item[f.getFieldName()] === f.getValue()){
-                                return false;
-                            }
+                            result &= !(item[f.getFieldName()] === f.getValue());
                         });
-                        return true;
-                    }
+                        return result;
+                    },
                 });
             }
         })
     }
 
-    run(){
+    run() {
         let validationPassed = true;
         this.validators.forEach(v => {
             validationPassed &= v.run(this.field);
@@ -59,3 +57,5 @@ let exporting = class Validation {
         return validationPassed;
     }
 };
+
+module.exports = exporting;

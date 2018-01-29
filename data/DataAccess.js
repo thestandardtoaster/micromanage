@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Dexie = require('dexie');
 const PersistableEntity = require("./PersistableEntity.js");
+const LocalCache = require("./LocalCache.js");
 
 class DataAccess {
     constructor() {
@@ -65,10 +66,35 @@ class DataAccess {
         return this.db.transaction('rw', table, function () {
             table.add(object);
         }).then(function () {
-            console.log(persistable.constructor.type + " " + persistable.name + " added to db.");
+            console.log(persistable.constructor.name + " " + persistable.name + " added to db.");
         }).catch(error => {
-            console.log(persistable.constructor.type + " " + persistable.name + " not added to db. \n" + error.stack);
+            console.log(persistable.constructor.name + " " + persistable.name + " not added to db. \n" + error.stack);
+        }).finally(() => {
+            LocalCache.add(persistable);
         });
+    }
+
+    saveAll(persistables) { // NOTE: only takes as list of objects with the same type
+        if (persistables.length > 0) {
+            let toAdd = [];
+            persistables.forEach(p => {
+                if (!(p instanceof PersistableEntity)) {
+                    throw new TypeError("Attempted to save object of non-persistable type " + persistable[0].constructor.name + ".");
+                }
+                toAdd.push(p._construct());
+            });
+
+            let table = this.tableMap.get(persistables[0].constructor);
+            return this.db.transaction('rw', table, function () {
+                table.bulkAdd(toAdd);
+            }).then(function () {
+                console.log(persistables.length + " " + persistables[0].constructor.name + "s added to db.");
+            }).catch(error => {
+                console.log("Error adding " + persistables.length + " " + persistables[0].constructor.name + "s to db. \n" + error.stack);
+            }).finally(() => {
+                LocalCache.addAll(persistables);
+            });
+        }
     }
 
     delete(persistable) {
@@ -83,16 +109,28 @@ class DataAccess {
             console.log(persistable.constructor.type + " " + persistable.name + " deleted from db.");
         }).catch(error => {
             console.log(persistable.constructor.type + " " + persistable.name + " not deleted from db. \n" + error.stack);
-        });
+        }).finally(() => {
+            LocalCache.removeItem(persistable);
+        })
     }
 
     forAllOfType(type, operation) {
         let table = this.tableMap.get(type);
         if (table !== undefined) {
-            this.db.transaction('r', table, () => {
-                table.each(operation);
+            return this.db.transaction('r', table, () => {
+                table.each(obj => {
+                    operation(type.copy(obj));
+                });
             });
         }
+        return undefined;
+    }
+
+    populateType(type) {
+        let collected = [];
+        this.forAllOfType(type, obj => {
+            collected.push(type.copy(obj));
+        }).finally(() => LocalCache.addItems(collected));
     }
 }
 

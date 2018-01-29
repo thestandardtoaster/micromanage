@@ -1,10 +1,10 @@
 // Libs
 const {remote, ipcRenderer} = require('electron');
 
-Date.prototype.sameDay = function (other) {
-    return this.getUTCFullYear() === other.getUTCFullYear() &&
-        this.getUTCMonth() === other.getUTCMonth() &&
-        this.getUTCDate() === other.getUTCDate();
+Date.prototype.sameDay = function(a) {
+    return this.getUTCFullYear() === a.getUTCFullYear() &&
+        this.getUTCMonth() === a.getUTCMonth() &&
+        this.getUTCDate() === a.getUTCDate();
 };
 
 // Datatypes
@@ -18,7 +18,7 @@ let typeFormMap = new Map();
 let currentDay = new Date(Date.now());
 let taskView = new CacheView(document.querySelector("#taskList"),
     "taskTemplate", task => {
-        return task.date.sameDay(currentDay);
+        return currentDay.sameDay(task.date);
     }, MicroTask);
 taskView.comparator = (a, b) => a.name.localeCompare(b.name); // sort by name
 taskView.setOnClick(data => {
@@ -72,13 +72,14 @@ function addListeners() {
             e.stopPropagation();
             addOverlay.classList.remove("visible");
             typeFormMap.get(type).show();
-        }
+        };
+
+        DataAccess.populateType(type);
     });
 }
 
 DataAccess.setOnReady(() => {
     // Pre-load mustache templates
-    LocalCache.registerTypes(MicroProject, MicroTask);
     CacheView.addTemplates("taskTemplate");
     LocalCache.addView(taskView);
     LocalCache.updateViews();

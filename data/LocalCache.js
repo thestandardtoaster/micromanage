@@ -1,5 +1,4 @@
 const PersistableEntity = require('./PersistableEntity');
-const DataAccess = require('./DataAccess');
 
 class LocalCache {
     constructor() {
@@ -15,24 +14,16 @@ class LocalCache {
         return this.instance;
     }
 
-    registerTypes(/* types */) {
-        [...arguments].forEach(type => {
-            this.typeCacheMap.set(type, []);
-            DataAccess.forAllOfType(type, item => {
-                this.add(type.copy(item));
-            });
-        });
-    }
-
     add(obj) {
         if (!(obj instanceof PersistableEntity)) {
             throw new TypeError("Attempt to cache non-persistable object.");
         }
         let cache = this.typeCacheMap.get(obj.constructor);
         if (cache === undefined) {
-            throw new Error("Attempt to cache object of unregistered type " + obj.constructor);
+            this.typeCacheMap.set(obj.constructor, []);
+            cache = this.typeCacheMap.get(obj.constructor);
         }
-        if (cache.indexOf(obj) < 0) {
+        if (!cache.includes(obj)) {
             cache.push(obj);
         }
 
@@ -41,8 +32,29 @@ class LocalCache {
         });
     }
 
-    removeObject(obj) {
-        DataAccess.delete(obj);
+    addItems(objs) { // NOTE: All objects should be the same type
+        if(objs.length > 0){
+            let cache = this.typeCacheMap.get(objs[0].constructor);
+            if (cache === undefined) {
+                this.typeCacheMap.set(objs[0].constructor, []);
+                cache = this.typeCacheMap.get(objs[0].constructor);
+            }
+            objs.forEach(obj => {
+                if (!(obj instanceof PersistableEntity)) {
+                    throw new TypeError("Attempt to cache non-persistable object.");
+                }
+                if(!cache.includes(obj)){
+                    cache.push(obj);
+                }
+            });
+
+            this.viewsOfType(objs[0].constructor).forEach(view => {
+                view.addItems(objs);
+            });
+        }
+    }
+
+    removeItem(obj) {
         let cache = this.typeCacheMap.get(obj.constructor);
         if (cache !== undefined) {
             cache.remove(obj);
@@ -68,12 +80,12 @@ class LocalCache {
 
     populateView(view) {
         let index;
-        if(index = this.views.indexOf(view) > 0){
+        if (index = this.views.indexOf(view) > 0) {
             view.types.forEach(type => this.views[index].addItems(this.typeCacheMap.get(type)));
         }
     }
 
-    forAllOfType(type, action){
+    forAllOfType(type, action) {
         this.typeCacheMap.get(type).forEach(action);
     }
 }

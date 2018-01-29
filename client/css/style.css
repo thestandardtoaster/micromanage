@@ -89,6 +89,7 @@ body {
     width: 100%;
     display: inline-block;
     -webkit-box-sizing: border-box;
+    position: relative;
 }
 
 .paneWrapper:first-child {
@@ -165,6 +166,7 @@ body {
 }
 
 .overlay .overlayForm label input {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -179,26 +181,28 @@ body {
 
 .task-item {
     height: 30px;
+    width: 450px;
     padding: auto;
     margin-bottom: 10px;
     border: 1px solid black;
     cursor: pointer;
+    display: block;
 }
 
 .task-item > span {
-    vertical-align: -webkit-baseline-middle;
     display: inline-block;
     line-height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.task-item > span:nth-child(2) {
+.task-item > div:last-of-type {
+    width: 50px;
+    position: absolute;
+    right: 10px;
     color: rgba(0, 0, 0, 0.8);
-}
-
-.task-item > span:last-child {
-    float: right;
-    line-height: 30px;
-    margin-right: 10px;
+    display: inline-block;
 }
 
 .loadingOverlay.visible {
@@ -231,4 +235,18 @@ body {
 
 .loadingOverlay.visible .loadingImage {
     color: rgba(0, 0, 0, 1);
+}
+
+.validationStatus {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: auto auto;
+    border-radius: 7.5px;
+    vertical-align: middle;
+}
+
+.validationStatus.invalid {
+    background-color: #c00;
+    opacity: 0.4;
 }

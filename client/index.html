@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript">
+        const Testing = require("../testing/Testing");
+    </script>
 </head>
 <body>
 <div class="loadingOverlay visible">
@@ -36,7 +39,7 @@
     <form class="overlayForm">
         <label>
             Name:
-            <input data-fieldname="name" data-validation="notEmpty" type="text"/>
+            <input data-fieldname="name" data-validation="notempty" type="text"/>
         </label><br>
         <label>
             Description:<br>
@@ -44,12 +47,12 @@
         </label><br>
         <label>
             Date:
-            <input data-fieldname="date" type="date"/>
+            <input data-fieldname="date" data-validation="notempty" type="date"/>
         </label><br>
         <label>
             Duration (minutes):
-            <input data-fieldname="duration" type="number" min=15 max=60/>
-        </label>
+            <input data-fieldname="duration" data-validation="notempty" type="number" min=15 max=60/>
+        </label><br>
 
         <input type="button" value="Save" class="saveButton"/>
         <input type="button" value="Cancel" class="cancelButton"/>
@@ -102,13 +105,11 @@
         <span>
             <input title="Completion status" type="checkbox" value="{{complete}}"/>
             <b>{{name}}</b>
-        </span>
-        <span>
             {{description}}
         </span>
-        <span>
+        <div>
             {{getFriendlyDuration}}
-        </span>
+        </div>
     </div>
 </script>
 <script type="text/javascript" async src="./js/clientMain.js"></script>

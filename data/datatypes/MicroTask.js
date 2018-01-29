@@ -4,6 +4,9 @@ const DataAccess = require("../DataAccess");
 let exporting = class MicroTask extends PersistableEntity {
     constructor(date = Date.now(), duration = 0, complete = false, name = "", description = "") {
         super(name, description);
+        if(!(date instanceof Date)){
+            date = new Date(date);
+        }
         this.date = date;
         this.duration = duration;
         this.complete = complete;

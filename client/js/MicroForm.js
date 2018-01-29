@@ -16,7 +16,7 @@ module.exports = class MicroForm {
         for (let i = 0; i < elements.length; i++) {
             let inputElement = elements[i].querySelector("input");
             inputElement = inputElement || elements[i].querySelector("textarea");
-            this.fields.push(new Field(inputElement));
+            this.fields.push(new Field(type, inputElement));
         }
 
         container.querySelectorAll("input[type='button'].saveButton").forEach(saveButton => {
@@ -27,7 +27,6 @@ module.exports = class MicroForm {
                         this.hide();
                         this.fields.forEach(field => field.clear());
                         this.postPersist(newObject);
-                        LocalCache.add(newObject);
                     });
                 }
             });
@@ -44,12 +43,11 @@ module.exports = class MicroForm {
     }
 
     validateData() {
+        let validationPassed = true;
         this.fields.forEach(field => {
-            if (!field.validate()) {
-                return false;
-            }
+                validationPassed &= field.validate();
         });
-        return true;
+        return validationPassed;
     }
 
     gatherObject() {

@@ -2,13 +2,10 @@ let exporting = class PersistableEntity {
     constructor(name, description) {
         this.name = name;
         this.description = description;
-        this.primaryId = -1;
+        this.id = -1;
     }
 
-    _construct(callingFromSubclass) {
-        if (callingFromSubclass !== true) {
-            console.warn("Raw PersistableEntity._construct called, define this in the class file for " + this.type);
-        }
+    _construct() {
         return {name: this.name, description: this.description};
     }
 };

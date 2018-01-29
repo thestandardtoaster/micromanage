@@ -1,4 +1,4 @@
-let Validation = require("Validation");
+let Validation = require("./Validation.js");
 
 module.exports = class Field {
     constructor(type, input) {
@@ -9,15 +9,18 @@ module.exports = class Field {
         } else {
             this.validationElement = document.createElement("div");
             this.validationElement.classList.add("validationStatus");
+            this.validationElement.classList.add("valid");
             input.parentElement.appendChild(this.validationElement);
         }
         this.fieldName = this.inputElement.getAttribute("data-fieldname");
         let validationString = this.inputElement.getAttribute("data-validation");
-        this.validator = new Validation(this, validationString);
+        this.validator = new Validation(this, validationString || "");
     }
 
     validate() {
-        return this.validator.run();
+        let valid = this.validator.run();
+        this.setValidation(valid, valid ? "" : this.getFriendlyName() + " didn't validate.");
+        return valid;
     }
 
     getValue() {
@@ -52,7 +55,15 @@ module.exports = class Field {
         }
     }
 
-    getType(){
+    isEmpty() {
+        if (this.inputElement.type !== "date") {
+            return !this.getValue();
+        } else {
+            return !this.inputElement.value;
+        }
+    }
+
+    getType() {
         return this.type;
     }
 
@@ -60,7 +71,23 @@ module.exports = class Field {
         return this.fieldName;
     }
 
+    getFriendlyName() {
+        let friendlyName = this.inputElement.parentNode.textContent;
+        return friendlyName.trim().replace(/[^a-zA-Z ]/g, "");
+    }
+
     clear() {
         this.inputElement.value = '';
+    }
+
+    setValidation(valid, message) {
+        if (valid) {
+            this.validationElement.classList.remove("invalid");
+            this.validationElement.classList.add("valid");
+        } else {
+            this.validationElement.classList.remove("valid");
+            this.validationElement.classList.add("invalid");
+        }
+        this.validationElement.setAttribute("title", message);
     }
 };
