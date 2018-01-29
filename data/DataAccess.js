@@ -92,7 +92,7 @@ class DataAccess {
             }).catch(error => {
                 console.log("Error adding " + persistables.length + " " + persistables[0].constructor.name + "s to db. \n" + error.stack);
             }).finally(() => {
-                LocalCache.addAll(persistables);
+                LocalCache.addItems(persistables);
             });
         }
     }
@@ -130,7 +130,9 @@ class DataAccess {
         let collected = [];
         this.forAllOfType(type, obj => {
             collected.push(type.copy(obj));
-        }).finally(() => LocalCache.addItems(collected));
+        }).finally(() => {
+            LocalCache.addItems(collected);
+        });
     }
 }
 
