@@ -73,8 +73,6 @@ function addListeners() {
             addOverlay.classList.remove("visible");
             typeFormMap.get(type).show();
         };
-
-        DataAccess.populateType(type);
     });
 }
 
@@ -86,6 +84,10 @@ DataAccess.setOnReady(() => {
 
     addListeners();
 
-    // Done with loading, hide the loading overlay
-    document.querySelector(".loadingOverlay").classList.remove("visible");
+    DataAccess.populateType(MicroTask).then(() => {
+        DataAccess.populateType(MicroProject);
+    }).finally(() => {
+        // Done with loading, hide the loading overlay
+        document.querySelector(".loadingOverlay").classList.remove("visible");
+    });
 });

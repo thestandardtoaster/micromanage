@@ -128,7 +128,7 @@ class DataAccess {
 
     populateType(type) {
         let collected = [];
-        this.forAllOfType(type, obj => {
+        return this.forAllOfType(type, obj => {
             collected.push(type.copy(obj));
         }).finally(() => {
             LocalCache.addItems(collected);
