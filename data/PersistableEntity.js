@@ -10,6 +10,6 @@ let exporting = class PersistableEntity {
     }
 };
 
-exporting.type = "";
+exporting.typeName = "Persistable";
 
 module.exports = exporting;

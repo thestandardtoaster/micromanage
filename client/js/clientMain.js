@@ -63,7 +63,7 @@ function addListeners() {
     let types = [MicroTask, MicroProject];
 
     types.forEach(type => {
-        let typeItemBase = "#add" + type.typeName.charAt(0).toUpperCase() + type.typeName.slice(1);
+        let typeItemBase = "#add" + type.typeName;
         let typeItem = document.querySelector(typeItemBase + "Item");
         let typeForm = document.querySelector(typeItemBase + "Form");
         // might as well build the map here, because it's the first place we query for these

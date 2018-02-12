@@ -18,9 +18,9 @@ module.exports = class Field {
     }
 
     validate() {
-        let valid = this.validator.run();
-        this.setValidation(valid, valid ? "" : this.getFriendlyName() + " didn't validate.");
-        return valid;
+        let v = this.validator.run();
+        this.setValidation(v.valid, v.valid ? "" : v.messages);
+        return v.valid;
     }
 
     getValue() {

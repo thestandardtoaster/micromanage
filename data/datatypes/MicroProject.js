@@ -10,7 +10,7 @@ let exporting = class MicroProject extends PersistableEntity {
     }
 };
 
-exporting.typeName = "project";
+exporting.typeName = "Project";
 
 DataAccess.setOnReady(() => DataAccess.registerType(exporting, DataAccess.getDatabase().projects));
 
