@@ -8,7 +8,6 @@ Date.prototype.sameDay = function(a) {
 };
 
 // Datatypes
-const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
 const MicroForm = require('./js/MicroForm');
 const DataAccess = require('../data/DataAccess');
 const LocalCache = require('../data/LocalCache');
@@ -17,12 +16,10 @@ const CacheView = require('../data/CacheView');
 let typeFormMap = new Map();
 let currentDay = new Date(Date.now());
 let taskView = new CacheView(document.querySelector("#taskList"),
-    "taskTemplate", task => {
-        return currentDay.sameDay(task.date);
-    }, MicroTask);
+    "taskTemplate", () => true, MicroTask);
 taskView.comparator = (a, b) => a.name.localeCompare(b.name); // sort by name
 taskView.setOnClick(data => {
-    alert(data.name + " " + data.description + " " + data.getFriendlyDuration());
+    Overlays.show(data.constructor.formName, data);
 });
 
 const win = remote.getCurrentWindow();
@@ -48,31 +45,24 @@ function addListeners() {
     };
     let addBtn = document.getElementById("addBtn");
 
-    let addOverlay = document.getElementById("addOverlay");
-    addBtn.onclick = e => {
-        if (addOverlay.classList.contains("visible")) {
-            addOverlay.classList.remove("visible");
-        } else if (document.querySelectorAll(".overlay.visible > .overlayForm").length < 1) {
-            addOverlay.classList.add("visible");
-        }
-    };
-    addOverlay.onclick = e => {
-        addOverlay.classList.remove("visible");
-    };
+    // let addOverlay = document.getElementById("addOverlay");
+    // addBtn.onclick = e => {
+    //     if (addOverlay.classList.contains("visible")) {
+    //         addOverlay.classList.remove("visible");
+    //     } else if (document.querySelectorAll(".overlay.visible > .overlayForm").length < 1) {
+    //         addOverlay.classList.add("visible");
+    //     }
+    // };
+    // addOverlay.onclick = e => {
+    //     addOverlay.classList.remove("visible");
+    // };
 
     let types = [MicroTask, MicroProject];
 
     types.forEach(type => {
-        let typeItemBase = "#add" + type.typeName;
-        let typeItem = document.querySelector(typeItemBase + "Item");
-        let typeForm = document.querySelector(typeItemBase + "Form");
+        let typeForm = document.querySelector('[data-overlayname="' + type.typeName.toLowerCase() + 'Form"]');
         // might as well build the map here, because it's the first place we query for these
         typeFormMap.set(type, new MicroForm(typeForm, type));
-        typeItem.onclick = e => {
-            e.stopPropagation();
-            addOverlay.classList.remove("visible");
-            typeFormMap.get(type).show();
-        };
     });
 }
 

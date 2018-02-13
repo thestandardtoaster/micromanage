@@ -11,6 +11,7 @@ let exporting = class MicroProject extends PersistableEntity {
 };
 
 exporting.typeName = "Project";
+exporting.formName = "projectForm";
 
 DataAccess.setOnReady(() => DataAccess.registerType(exporting, DataAccess.getDatabase().projects));
 

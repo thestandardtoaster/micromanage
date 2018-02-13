@@ -11,5 +11,6 @@ let exporting = class PersistableEntity {
 };
 
 exporting.typeName = "Persistable";
+exporting.formName = "nah";
 
 module.exports = exporting;

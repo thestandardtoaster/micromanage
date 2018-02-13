@@ -17,14 +17,19 @@ let exporting = class Validation {
                 this.validators.push({
                     type: ValidationTypes.NotEmpty,
                     run: function (f) {
+                        let valid = !f.isEmpty();
+                        let message = "";
+                        if(!valid){
+                            message = "Field " + f.getFriendlyName().toLowerCase() + " cannot be empty.";
+                        }
                         return {
-                            valid: !f.isEmpty(),
-                            message: "Field " + f.getFriendlyName().toLowerCase() + " cannot be empty.",
+                            valid: valid,
+                            message: message,
                         };
                     },
                 });
             } else if (arg.substr(0, 3) === "in[") { // format: in[x,y]
-                let nums = arg.substr(0, 3).split(",");
+                let nums = arg.substr(3).split(",");
                 if (nums.length === 2) {
                     let min = parseFloat(nums[0]);
                     let max = parseFloat(nums[1]);
@@ -34,9 +39,14 @@ let exporting = class Validation {
                         min: min,
                         max: max,
                         run: function (f) {
+                            let valid = min <= f.getValue() && max >= f.getValue();
+                            let message = "";
+                            if (!valid) {
+                                message = "Field " + f.getFriendlyName().toLowerCase() + " isn't in range [" + min + ", " + max + "].";
+                            }
                             return {
-                                valid: min <= f.getValue() && max >= f.getValue(),
-                                message: "Field " + f.getFriendlyName().toLowerCase() + " isn't in range [" + min + ", " + max + "].",
+                                valid: valid,
+                                message: message,
                             }
                         }
                     });
@@ -44,13 +54,18 @@ let exporting = class Validation {
             } else if (arg === "unique") {           // format: unique
                 this.validators.push({
                     run: function (f) {
-                        let result = true;
+                        let valid = true;
                         LocalCache.forAllOfType(f.getType(), item => {
-                            result &= !(item[f.getFieldName()] === f.getValue());
+                            valid &= !(item[f.getFieldName()] === f.getValue());
                         });
+
+                        let message = "";
+                        if(!valid){
+                            message = f.getType().typeName + " '" + f.getValue() + "' already exists.";
+                        }
                         return {
-                            valid: result,
-                            message: f.getType().typeName + " " + f.getFriendlyName().toLowerCase() + " already exists.",
+                            valid: valid,
+                            message: message,
                         };
                     },
                 });

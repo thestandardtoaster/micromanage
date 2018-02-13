@@ -15,6 +15,10 @@ module.exports = class Field {
         this.fieldName = this.inputElement.getAttribute("data-fieldname");
         let validationString = this.inputElement.getAttribute("data-validation");
         this.validator = new Validation(this, validationString || "");
+        this.validate();
+        this.inputElement.oninput = () => {
+            this.validate();
+        }
     }
 
     validate() {
@@ -73,6 +77,9 @@ module.exports = class Field {
 
     getFriendlyName() {
         let friendlyName = this.inputElement.parentNode.textContent;
+        if(this.inputElement.hasAttribute("data-name")){
+            friendlyName = this.inputElement.getAttribute("data-name");
+        }
         return friendlyName.trim().replace(/[^a-zA-Z ]/g, "");
     }
 

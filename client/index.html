@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="css/style.css"/>
     <script type="text/javascript">
         const Testing = require("../testing/Testing");
+        const Overlays = require("./js/Overlays");
+        const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
+
+        window.onload = () => {
+            Overlays.initialize(document.querySelector(".overlay"));
+        };
     </script>
 </head>
 <body>
@@ -14,7 +20,7 @@
     </div>
 </div>
 <div class="bar" id="controlBar">
-    <a href="#" class="button app" id="addBtn"></a>
+    <a href="#" class="button app" id="addBtn" onclick="Overlays.show('addOverlay')"></a>
     <a href="#" class="button app" id="prefsBtn"></a>
     <a href="#" class="button app" id="configBtn"></a>
 
@@ -22,24 +28,22 @@
     <a href="#" class="button window" id="maxBtn"></a>
     <a href="#" class="button window" id="minBtn"></a>
 </div>
-<div class="overlay" id="addOverlay">
-    <div class="overlayContainer">
-        <div class="overlayItem" id="addTaskItem">
+<div class="overlay">
+    <div class="overlayContainer" data-overlayname="addOverlay">
+        <div class="overlayItem" id="addTaskItem" onclick="Overlays.show(MicroTask.formName)">
             New Task
         </div>
-        <div class="overlayItem" id="addProjectItem">
+        <div class="overlayItem" id="addProjectItem" onclick="Overlays.show(MicroProject.formName)">
             New Project
         </div>
         <div class="overlayItem" id="addEventItem">
             New Event
         </div>
     </div>
-</div>
-<div class="overlay" id="addTaskForm">
-    <form class="overlayForm">
+    <form class="overlayForm" data-overlayname="taskForm">
         <label>
             Name:
-            <input data-fieldname="name" data-validation="notempty unique" type="text"/>
+            <input type="text" data-fieldname="name" data-validation="notempty unique"/>
         </label><br>
         <label>
             Description:<br>
@@ -47,19 +51,17 @@
         </label><br>
         <label>
             Date:
-            <input data-fieldname="date" data-validation="notempty" type="date"/>
+            <input type="date" data-fieldname="date" data-validation="notempty"/>
         </label><br>
         <label>
             Duration (minutes):
-            <input data-fieldname="duration" data-validation="notempty" type="number" min=15 max=60/>
+            <input type="number" min=15 max=60 data-name="Duration" data-fieldname="duration" data-validation="notempty in[15,60]"/>
         </label><br>
 
         <input type="button" value="Save" class="saveButton"/>
         <input type="button" value="Cancel" class="cancelButton"/>
     </form>
-</div>
-<div class="overlay" id="addProjectForm">
-    <div class="overlayForm">
+    <div class="overlayForm" data-overlayname="projectForm">
         <label>
             Name:
             <input date-fieldname="name" type="text"/>
@@ -70,11 +72,11 @@
         </label><br>
         <label>
             Start Date:
-            <input data-fieldname="start" type="date"/>
+            <input type="date" data-fieldname="start"/>
         </label><br>
         <label>
             End Date:
-            <input data-fieldname="end" type="date"/>
+            <input type="date" data-fieldname="end"/>
         </label><br>
 
         <input type="button" value="Save" class="saveButton"/>
@@ -83,8 +85,8 @@
 </div>
 <div id="leftContentPane">
     <div class="paneWrapper">
-        <div id="todaySchedulePane">
-            <h3>Today's Schedule</h3><br>
+        <div>
+            <h3>All Tasks</h3><br>
             <div id="taskList">
 
             </div>

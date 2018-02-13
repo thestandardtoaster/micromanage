@@ -1,6 +1,7 @@
 const Field = require("./Field.js");
 const DataAccess = require("../../data/DataAccess");
 const LocalCache = require("../../data/LocalCache");
+const Overlays = require("./Overlays");
 
 NodeList.prototype.forEach = Array.prototype.forEach;
 
@@ -16,7 +17,8 @@ module.exports = class MicroForm {
         for (let i = 0; i < elements.length; i++) {
             let inputElement = elements[i].querySelector("input");
             inputElement = inputElement || elements[i].querySelector("textarea");
-            this.fields.push(new Field(type, inputElement));
+            let newField = new Field(type, inputElement);
+            this.fields.push(newField);
         }
 
         container.querySelectorAll("input[type='button'].saveButton").forEach(saveButton => {
@@ -24,7 +26,7 @@ module.exports = class MicroForm {
                 let newObject = this.gatherObject();
                 if (this.validateData()) {
                     DataAccess.save(newObject).finally(() => {
-                        this.hide();
+                        Overlays.hide(this.type.formName);
                         this.fields.forEach(field => field.clear());
                         this.postPersist(newObject);
                     });
@@ -33,7 +35,7 @@ module.exports = class MicroForm {
         });
         container.querySelectorAll("input[type='button'].cancelButton").forEach(cancelButton => {
             cancelButton.addEventListener("click", () => {
-                this.hide();
+                Overlays.hide(this.overlayName);
                 this.fields.forEach(field => field.clear());
             });
         });
@@ -68,13 +70,5 @@ module.exports = class MicroForm {
 
     setPostPersist(event) {
         this.postPersist = event;
-    }
-
-    hide() {
-        this.container.classList.remove("visible");
-    }
-
-    show() {
-        this.container.classList.add("visible");
     }
 };

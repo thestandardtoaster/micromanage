@@ -179,6 +179,14 @@ body {
     margin-bottom: 0;
 }
 
+.overlay > * {
+    display: none;
+}
+
+.overlay > .visible {
+    display: block;
+}
+
 .task-item {
     height: 30px;
     width: 450px;

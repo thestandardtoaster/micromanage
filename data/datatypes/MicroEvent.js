@@ -20,6 +20,7 @@ let exporting = class MicroEvent extends PersistableEntity {
 };
 
 exporting.typeName = "Event";
+exporting.formName = "eventForm";
 
 DataAccess.setOnReady(() => DataAccess.registerType(exporting, DataAccess.getDatabase().events));
 

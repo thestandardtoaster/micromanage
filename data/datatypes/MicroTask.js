@@ -60,6 +60,7 @@ let exporting = class MicroTask extends PersistableEntity {
 };
 
 exporting.typeName = "Task";
+exporting.formName = "taskForm";
 
 DataAccess.setOnReady(() => DataAccess.registerType(exporting, DataAccess.getDatabase().tasks));
 

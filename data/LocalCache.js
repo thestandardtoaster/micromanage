@@ -86,7 +86,9 @@ class LocalCache {
     }
 
     forAllOfType(type, action) {
-        this.typeCacheMap.get(type).forEach(action);
+        if(this.typeCacheMap.has(type)){
+            this.typeCacheMap.get(type).forEach(action);
+        }
     }
 }
 
