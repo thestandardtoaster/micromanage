@@ -27,7 +27,10 @@ module.exports = class MicroForm {
                 if (this.validateData()) {
                     DataAccess.save(newObject).finally(() => {
                         Overlays.hide(this.type.formName);
-                        this.fields.forEach(field => field.clear());
+                        this.fields.forEach(field => {
+                            field.clear();
+                            field.validate();
+                        });
                         this.postPersist(newObject);
                     });
                 }

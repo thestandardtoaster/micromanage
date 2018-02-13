@@ -7,6 +7,7 @@
         const Testing = require("../testing/Testing");
         const Overlays = require("./js/Overlays");
         const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
+        const datatypes = [MicroEvent, MicroProject, MicroTask];
 
         window.onload = () => {
             Overlays.initialize(document.querySelector(".overlay"));

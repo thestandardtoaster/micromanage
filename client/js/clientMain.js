@@ -1,5 +1,5 @@
 // Libs
-const {remote, ipcRenderer} = require('electron');
+const {remote} = require('electron');
 
 Date.prototype.sameDay = function(a) {
     return this.getUTCFullYear() === a.getUTCFullYear() &&
@@ -43,26 +43,12 @@ function addListeners() {
     closeBtn.onclick = () => {
         win.close();
     };
-    let addBtn = document.getElementById("addBtn");
 
-    // let addOverlay = document.getElementById("addOverlay");
-    // addBtn.onclick = e => {
-    //     if (addOverlay.classList.contains("visible")) {
-    //         addOverlay.classList.remove("visible");
-    //     } else if (document.querySelectorAll(".overlay.visible > .overlayForm").length < 1) {
-    //         addOverlay.classList.add("visible");
-    //     }
-    // };
-    // addOverlay.onclick = e => {
-    //     addOverlay.classList.remove("visible");
-    // };
-
-    let types = [MicroTask, MicroProject];
-
-    types.forEach(type => {
+    datatypes.forEach(type => {
         let typeForm = document.querySelector('[data-overlayname="' + type.typeName.toLowerCase() + 'Form"]');
-        // might as well build the map here, because it's the first place we query for these
-        typeFormMap.set(type, new MicroForm(typeForm, type));
+        if(typeForm !== null){
+            typeFormMap.set(type, new MicroForm(typeForm, type));
+        }
     });
 }
 
@@ -74,10 +60,14 @@ DataAccess.setOnReady(() => {
 
     addListeners();
 
-    DataAccess.populateType(MicroTask).then(() => {
-        DataAccess.populateType(MicroProject);
-    }).finally(() => {
+    console.time("Data population");
+    let populate = DataAccess.populateType();
+    datatypes.forEach(type => {
+        populate = populate.then(() => {return DataAccess.populateType(type)});
+    });
+    populate.finally(() => {
         // Done with loading, hide the loading overlay
         document.querySelector(".loadingOverlay").classList.remove("visible");
+        console.timeEnd("Data population");
     });
 });

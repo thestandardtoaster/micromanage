@@ -123,7 +123,8 @@ class DataAccess {
                 });
             });
         }
-        return undefined;
+        // If no operation happened, return an empty promise
+        return Dexie.Promise.resolve(0);
     }
 
     populateType(type) {
@@ -137,5 +138,6 @@ class DataAccess {
 }
 
 const _dataAccessInstance = DataAccess.getSingleton();
+_dataAccessInstance.Promise = Dexie.Promise;
 
 module.exports = _dataAccessInstance;
