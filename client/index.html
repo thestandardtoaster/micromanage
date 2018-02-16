@@ -37,7 +37,7 @@
         <div class="overlayItem" id="addProjectItem" onclick="Overlays.show(MicroProject.formName)">
             New Project
         </div>
-        <div class="overlayItem" id="addEventItem">
+        <div class="overlayItem" id="addEventItem" onclick="Overlays.show(MicroEvent.formName)">
             New Event
         </div>
     </div>
@@ -62,10 +62,10 @@
         <input type="button" value="Save" class="saveButton"/>
         <input type="button" value="Cancel" class="cancelButton"/>
     </form>
-    <div class="overlayForm" data-overlayname="projectForm">
+    <form class="overlayForm" data-overlayname="projectForm">
         <label>
             Name:
-            <input date-fieldname="name" type="text"/>
+            <input type="text" data-fieldname="name" data-validation="notempty unique"/>
         </label><br>
         <label>
             Description:<br>
@@ -73,16 +73,37 @@
         </label><br>
         <label>
             Start Date:
-            <input type="date" data-fieldname="start"/>
+            <input type="date" data-fieldname="start" data-validation="notempty"/>
         </label><br>
         <label>
             End Date:
-            <input type="date" data-fieldname="end"/>
+            <input type="date" data-fieldname="end" data-validation="notempty"/>
         </label><br>
 
         <input type="button" value="Save" class="saveButton"/>
         <input type="button" value="Cancel" class="cancelButton"/>
-    </div>
+    </form>
+    <form class="overlayForm" data-overlayname="eventForm">
+        <label>
+            Name:
+            <input type="text" data-fieldname="name" data-validation="unique notempty"/>
+        </label><br>
+        <label>
+            Description:<br>
+            <textarea data-fieldname="description"></textarea>
+        </label><br>
+        <label>
+            Date:
+            <input type="date" data-fieldname="date" data-validation="notempty"/>
+        </label><br>
+        <label>
+            Reminder:
+            <input type="number" min=5 max=60 data-fieldname="reminders"/>
+        </label><br>
+
+        <input type="button" value="Save" class="saveButton"/>
+        <input type="button" value="Cancel" class="cancelButton"/>
+    </form>
 </div>
 <div id="leftContentPane">
     <div class="paneWrapper">

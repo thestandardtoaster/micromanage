@@ -168,6 +168,7 @@ body {
 .overlay .overlayForm label input {
     margin-top: 10px;
     margin-bottom: 10px;
+    line-height: 12pt;
 }
 
 .overlay .overlayForm label textarea {

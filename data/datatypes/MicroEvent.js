@@ -6,8 +6,7 @@ let exporting = class MicroEvent extends PersistableEntity {
         super(name, description);
         this.date = date;
         this.duration = duration;
-        this.reminders = [];
-        this.reminders.concat(reminders);
+        this.reminders = [].concat(reminders);
     }
 
     _construct() {
@@ -16,6 +15,14 @@ let exporting = class MicroEvent extends PersistableEntity {
         object.duration = this.duration;
         object.reminders = this.reminders;
         return object;
+    }
+
+    static copy(other) {
+        let newObject = new MicroEvent(other.date, other.duration, other.reminders, other.name, other.description);
+        if (other.hasOwnProperty("id")) { // If the other object came from a database, we want the primary key
+            newObject.primaryId = other["id"];
+        }
+        return newObject;
     }
 };
 

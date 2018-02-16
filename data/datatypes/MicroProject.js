@@ -8,6 +8,14 @@ let exporting = class MicroProject extends PersistableEntity {
         this.end = dateEnd;
         this.duration = duration;
     }
+
+    static copy(other) {
+        let newObject = new MicroProject(other.start, other.end, other.duration, other.name, other.description);
+        if (other.hasOwnProperty("id")) { // If the other object came from a database, we want the primary key
+            newObject.primaryId = other["id"];
+        }
+        return newObject;
+    }
 };
 
 exporting.typeName = "Project";

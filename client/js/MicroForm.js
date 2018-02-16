@@ -58,7 +58,12 @@ module.exports = class MicroForm {
     gatherObject() {
         let newEmpty = new this.type();
         for (let i = 0; i < this.fields.length; i++) {
-            newEmpty[this.fields[i].getFieldName()] = this.fields[i].getValue();
+            let field = this.fields[i];
+            if(Array.isArray(newEmpty[field.getFieldName()])){
+                newEmpty[field.getFieldName()].concat(field.getValue());
+            } else {
+                newEmpty[field.getFieldName()] = field.getValue();
+            }
         }
         return newEmpty;
     }
