@@ -79,7 +79,11 @@ class Overlays {
         let fieldname = element.getAttribute("data-fieldname");
         if(fieldname !== undefined && obj.hasOwnProperty(fieldname)){
             if(element.nodeName === "INPUT" || element.nodeName === "TEXTAREA"){
-                element.value += obj[fieldname];
+                if(obj[fieldname] instanceof Date){
+                    element.value = obj[fieldname].toISOString().substring(0, 10);
+                } else {
+                    element.value = obj[fieldname];
+                }
             } else {
                 element.textContent += obj[fieldname];
             }

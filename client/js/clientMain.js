@@ -1,4 +1,5 @@
 // Libs
+console.time("Initialize");
 const {remote} = require('electron');
 
 Date.prototype.sameDay = function(a) {
@@ -18,9 +19,6 @@ let currentDay = new Date(Date.now());
 let taskView = new CacheView(document.querySelector("#taskList"),
     "taskTemplate", () => true, MicroTask);
 taskView.comparator = (a, b) => a.name.localeCompare(b.name); // sort by name
-taskView.setOnClick(data => {
-    Overlays.show(data.constructor.formName, data);
-});
 
 const win = remote.getCurrentWindow();
 
@@ -52,11 +50,11 @@ function addListeners() {
     });
 }
 
+console.timeEnd("Initialize");
 DataAccess.setOnReady(() => {
     // Pre-load mustache templates
     CacheView.addTemplates("taskTemplate");
     LocalCache.addView(taskView);
-    LocalCache.updateViews();
 
     addListeners();
 

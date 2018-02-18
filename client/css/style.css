@@ -17,13 +17,13 @@ body {
     -webkit-app-region: drag;
     min-width: 205px;
     z-index: 2;
+    box-shadow: 0 0 5px #555;
 }
 
 .bar .button {
     width: 26px;
     height: 26px;
     -webkit-app-region: no-drag;
-    background-image-color: #fff;
     background: no-repeat center;
 }
 
@@ -63,26 +63,6 @@ body {
     background-image: url("icons/ic_settings_24px.svg");
 }
 
-#leftContentPane {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
-    margin: 0;
-    padding-top: 20px;
-}
-
-#rightContentPane {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 40%;
-    height: 100%;
-    margin: 0;
-    padding-top: 40px;
-}
-
 .paneWrapper {
     padding: 20px;
     border: 1px solid black;
@@ -94,14 +74,6 @@ body {
 
 .paneWrapper:first-child {
     float: left;
-}
-
-#calendarPane {
-    min-height: 50%;
-}
-
-#progressPane {
-    min-height: 50%;
 }
 
 .overlay {
@@ -190,16 +162,16 @@ body {
 
 .task-item {
     height: 30px;
-    width: 450px;
-    padding: auto;
+    padding: auto 10px auto auto;
     margin-bottom: 10px;
     border: 1px solid black;
     cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
     display: block;
 }
 
 .task-item > span {
-    display: inline-block;
     line-height: 30px;
     text-overflow: ellipsis;
     white-space: nowrap;

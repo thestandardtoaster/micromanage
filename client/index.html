@@ -20,7 +20,7 @@
         Loading...
     </div>
 </div>
-<div class="bar" id="controlBar">
+<div class="bar">
     <a href="#" class="button app" id="addBtn" onclick="Overlays.show('addOverlay')"></a>
     <a href="#" class="button app" id="prefsBtn"></a>
     <a href="#" class="button app" id="configBtn"></a>
@@ -108,7 +108,7 @@
 <div id="leftContentPane">
     <div class="paneWrapper">
         <div>
-            <h3>All Tasks</h3><br>
+            <h3>All Tasks</h3>
             <div id="taskList">
 
             </div>
@@ -125,15 +125,15 @@
 </div>
 
 <script id="taskTemplate" async type="text/x-mustache-template">
-    <div class="task-item">
+    <div class="task-item" onclick="Overlays.show(this.data.constructor.formName, this.data)">
         <span>
             <input title="Completion status" type="checkbox" value="{{complete}}"/>
+            <span>
+                {{getFriendlyDuration}}
+            </span>
             <b>{{name}}</b>
             {{description}}
         </span>
-        <div>
-            {{getFriendlyDuration}}
-        </div>
     </div>
 </script>
 <script type="text/javascript" async src="./js/clientMain.js"></script>

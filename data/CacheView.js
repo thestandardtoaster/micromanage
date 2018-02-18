@@ -12,10 +12,6 @@ let exporting = class CacheView {
         this.comparator = () => 0;
     }
 
-    setOnClick(func) {
-        this.onclick = func;
-    }
-
     hasType(type) {
         return this.types.includes(type);
     }
@@ -30,11 +26,6 @@ let exporting = class CacheView {
 
     addItem(item) {
         let domElement = CacheView.runTemplate(this.template, item);
-        if(this.onclick !== undefined){
-            domElement.addEventListener("click", () => {
-                this.onclick(domElement.data);
-            });
-        }
         this.items.set(item, domElement);
         this.render();
     }
@@ -53,7 +44,7 @@ let exporting = class CacheView {
 
     render() {
         let frag = new DocumentFragment();
-        let toAdd = Array.from(this.items.keys()).sort(this.comparator).filter(this.predicate);
+        let toAdd = Array.from(this.items.keys()).filter(this.predicate).sort(this.comparator);
         toAdd.forEach(item => frag.appendChild(this.items.get(item)));
 
         // remove any existing elements
