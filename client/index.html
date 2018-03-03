@@ -62,6 +62,10 @@
         <input type="button" value="Save" class="saveButton"/>
         <input type="button" value="Cancel" class="cancelButton"/>
     </form>
+    <div class="overlayForm" data-overlayname="taskView">
+        <b>Name: </b><span data-fieldname="name"></span><br>
+        <b>Description: </b><span data-fieldname="description"></span>
+    </div>
     <form class="overlayForm" data-overlayname="projectForm">
         <label>
             Name:
@@ -110,7 +114,6 @@
         <div>
             <h3>All Tasks</h3>
             <div id="taskList">
-
             </div>
         </div>
     </div>
@@ -125,7 +128,7 @@
 </div>
 
 <script id="taskTemplate" async type="text/x-mustache-template">
-    <div class="task-item" onclick="Overlays.show(this.data.constructor.formName, this.data)">
+    <div class="task-item" onclick="Overlays.show('taskView', this.data)">
         <span>
             <input title="Completion status" type="checkbox" value="{{complete}}"/>
             <span>

@@ -85,7 +85,7 @@ class Overlays {
                     element.value = obj[fieldname];
                 }
             } else {
-                element.textContent += obj[fieldname];
+                element.textContent = obj[fieldname];
             }
         }
 

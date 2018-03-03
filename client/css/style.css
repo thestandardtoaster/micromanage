@@ -1,6 +1,7 @@
 body {
     -webkit-user-select: none;
     min-width: 205px;
+    font-family: sans-serif;
 }
 
 .content {
