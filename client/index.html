@@ -1,144 +1,137 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <script type="text/javascript">
-        const Testing = require("../testing/Testing");
-        const Overlays = require("./js/Overlays");
-        const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
-        const datatypes = [MicroEvent, MicroProject, MicroTask];
+    <head>
+        <meta charset="UTF-8"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css"/>
+        <script type="text/javascript">
+            const Testing = require("../testing/Testing");
+            const Overlays = require("./js/Overlays");
+            const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
+            const datatypes = [MicroEvent, MicroProject, MicroTask];
 
-        window.onload = () => {
-            Overlays.initialize(document.querySelector(".overlay"));
-        };
-    </script>
-</head>
-<body>
-<div class="loadingOverlay visible">
-    <div class="loadingImage">
-        Loading...
-    </div>
-</div>
-<div class="bar">
-    <a href="#" class="button app" id="addBtn" onclick="Overlays.show('addOverlay')"></a>
-    <a href="#" class="button app" id="prefsBtn"></a>
-    <a href="#" class="button app" id="configBtn"></a>
-
-    <a href="#" class="button window" id="closeBtn"></a>
-    <a href="#" class="button window" id="maxBtn"></a>
-    <a href="#" class="button window" id="minBtn"></a>
-</div>
-<div class="overlay">
-    <div class="overlayContainer" data-overlayname="addOverlay">
-        <div class="overlayItem" id="addTaskItem" onclick="Overlays.show(MicroTask.formName)">
-            New Task
-        </div>
-        <div class="overlayItem" id="addProjectItem" onclick="Overlays.show(MicroProject.formName)">
-            New Project
-        </div>
-        <div class="overlayItem" id="addEventItem" onclick="Overlays.show(MicroEvent.formName)">
-            New Event
+            window.onload = () => {
+                Overlays.initialize(document.querySelector(".overlay"));
+            };
+        </script>
+    </head>
+    <body>
+    <div class="loadingOverlay visible">
+        <div class="loadingImage">
+            Loading...
         </div>
     </div>
-    <form class="overlayForm" data-overlayname="taskForm">
-        <label>
-            Name:
-            <input type="text" data-fieldname="name" data-validation="notempty unique"/>
-        </label><br>
-        <label>
-            Description:<br>
-            <textarea data-fieldname="description"></textarea>
-        </label><br>
-        <label>
-            Date:
-            <input type="date" data-fieldname="date" data-validation="notempty"/>
-        </label><br>
-        <label>
-            Duration (minutes):
-            <input type="number" min=15 max=60 data-name="Duration" data-fieldname="duration" data-validation="notempty in[15,60]"/>
-        </label><br>
+    <div class="bar">
+        <a href="#" class="button app" id="addBtn" onclick="Overlays.show('addOverlay')"></a>
+        <a href="#" class="button app" id="prefsBtn"></a>
+        <a href="#" class="button app" id="configBtn"></a>
 
-        <input type="button" value="Save" class="saveButton"/>
-        <input type="button" value="Cancel" class="cancelButton"/>
-    </form>
-    <div class="overlayForm" data-overlayname="taskView">
-        <b>Name: </b><span data-fieldname="name"></span><br>
-        <b>Description: </b><span data-fieldname="description"></span>
+        <a href="#" class="button window" id="closeBtn"></a>
+        <a href="#" class="button window" id="maxBtn"></a>
+        <a href="#" class="button window" id="minBtn"></a>
     </div>
-    <form class="overlayForm" data-overlayname="projectForm">
-        <label>
-            Name:
-            <input type="text" data-fieldname="name" data-validation="notempty unique"/>
-        </label><br>
-        <label>
-            Description:<br>
-            <textarea data-fieldname="description"></textarea>
-        </label><br>
-        <label>
-            Start Date:
-            <input type="date" data-fieldname="start" data-validation="notempty"/>
-        </label><br>
-        <label>
-            End Date:
-            <input type="date" data-fieldname="end" data-validation="notempty"/>
-        </label><br>
+    <div class="overlay">
+        <div class="overlayContainer" data-overlayname="addOverlay">
+            <div class="overlayItem" id="addTaskItem" onclick="Overlays.show(MicroTask.formName)">
+                New Task
+            </div>
+            <div class="overlayItem" id="addProjectItem" onclick="Overlays.show(MicroProject.formName)">
+                New Project
+            </div>
+            <div class="overlayItem" id="addEventItem" onclick="Overlays.show(MicroEvent.formName)">
+                New Event
+            </div>
+        </div>
+        <form class="overlayForm" data-overlayname="taskForm">
+            <label>
+                Name:
+                <input type="text" data-fieldname="name" data-validation="notempty unique"/>
+            </label><br>
+            <label>
+                Description:<br>
+                <textarea data-fieldname="description"></textarea>
+            </label><br>
+            <label>
+                Date:
+                <input type="date" data-fieldname="date" data-validation="notempty"/>
+            </label><br>
+            <label>
+                Duration (minutes):
+                <input type="number" min=15 max=60 data-name="Duration" data-fieldname="duration" data-validation="notempty in[15,60]"/>
+            </label><br>
 
-        <input type="button" value="Save" class="saveButton"/>
-        <input type="button" value="Cancel" class="cancelButton"/>
-    </form>
-    <form class="overlayForm" data-overlayname="eventForm">
-        <label>
-            Name:
-            <input type="text" data-fieldname="name" data-validation="unique notempty"/>
-        </label><br>
-        <label>
-            Description:<br>
-            <textarea data-fieldname="description"></textarea>
-        </label><br>
-        <label>
-            Date:
-            <input type="date" data-fieldname="date" data-validation="notempty"/>
-        </label><br>
-        <label>
-            Reminder:
-            <input type="number" min=5 max=60 data-fieldname="reminders"/>
-        </label><br>
+            <input type="button" value="Save" class="saveButton"/>
+            <input type="button" value="Cancel" class="cancelButton"/>
+        </form>
+        <div class="overlayForm" data-overlayname="taskView">
+            <b>Name: </b><span data-fieldname="name"></span><br>
+            <b>Description: </b><span data-fieldname="description"></span>
+        </div>
+        <form class="overlayForm" data-overlayname="projectForm">
+            <label>
+                Name:
+                <input type="text" data-fieldname="name" data-validation="notempty unique"/>
+            </label><br>
+            <label>
+                Description:<br>
+                <textarea data-fieldname="description"></textarea>
+            </label><br>
+            <label>
+                Start Date:
+                <input type="date" data-fieldname="start" data-validation="notempty"/>
+            </label><br>
+            <label>
+                End Date:
+                <input type="date" data-fieldname="end" data-validation="notempty"/>
+            </label><br>
 
-        <input type="button" value="Save" class="saveButton"/>
-        <input type="button" value="Cancel" class="cancelButton"/>
-    </form>
-</div>
-<div id="leftContentPane">
-    <div class="paneWrapper">
-        <div>
-            <h3>All Tasks</h3>
-            <div id="taskList">
+            <input type="button" value="Save" class="saveButton"/>
+            <input type="button" value="Cancel" class="cancelButton"/>
+        </form>
+        <form class="overlayForm" data-overlayname="eventForm">
+            <label>
+                Name:
+                <input type="text" data-fieldname="name" data-validation="unique notempty"/>
+            </label><br>
+            <label>
+                Description:<br>
+                <textarea data-fieldname="description"></textarea>
+            </label><br>
+            <label>
+                Date:
+                <input type="date" data-fieldname="date" data-validation="notempty"/>
+            </label><br>
+            <label>
+                Reminder:
+                <input type="number" min=5 max=60 data-fieldname="reminders"/>
+            </label><br>
+
+            <input type="button" value="Save" class="saveButton"/>
+            <input type="button" value="Cancel" class="cancelButton"/>
+        </form>
+    </div>
+    <div id="leftContentPane">
+        <div class="paneWrapper">
+            <div>
+                <h3>All Tasks</h3>
+                <div id="taskList">
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="rightContentPane">
-    <div class="paneWrapper">
-        <div id="calendarPane"></div>
-    </div>
-    <div class="paneWrapper">
-        <div id="progressPane"></div>
-    </div>
-</div>
 
-<script id="taskTemplate" async type="text/x-mustache-template">
-    <div class="task-item" onclick="Overlays.show('taskView', this.data)">
-        <span>
-            <input title="Completion status" type="checkbox" value="{{complete}}"/>
+    <script id="taskTemplate" async type="text/x-mustache-template">
+        <div class="task-item" onclick="Overlays.show('taskView', this.data)">
             <span>
-                {{getFriendlyDuration}}
+                <input title="Completion status" type="checkbox" value="{{complete}}"/>
+                <span>
+                    {{getFriendlyDuration}}
+                </span>
+                <b>{{name}}</b>
+                {{description}}
             </span>
-            <b>{{name}}</b>
-            {{description}}
-        </span>
-    </div>
-</script>
-<script type="text/javascript" async src="./js/clientMain.js"></script>
-</body>
+        </div>
+    </script>
+    <script type="text/javascript" async src="./js/clientMain.js"></script>
+    </body>
 </html>

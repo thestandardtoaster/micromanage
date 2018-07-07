@@ -15,7 +15,7 @@ module.exports = class Field {
         this.fieldName = this.inputElement.getAttribute("data-fieldname");
         let validationString = this.inputElement.getAttribute("data-validation");
         this.validator = new Validation(this, validationString || "");
-        this.validate();
+        
         this.inputElement.oninput = () => {
             this.validate();
         }

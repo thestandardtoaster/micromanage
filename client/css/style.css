@@ -1,7 +1,7 @@
 body {
     -webkit-user-select: none;
     min-width: 205px;
-    font-family: sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
 }
 
 .content {
@@ -135,7 +135,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    line-height: 110%;
+    line-height: 12pt;
 }
 
 .overlay .overlayForm label input {
