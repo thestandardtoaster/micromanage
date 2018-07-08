@@ -2,17 +2,18 @@
 console.time("Initialize");
 const {remote} = require('electron');
 
-Date.prototype.sameDay = function(a) {
+Date.prototype.sameDay = function (a) {
     return this.getUTCFullYear() === a.getUTCFullYear() &&
         this.getUTCMonth() === a.getUTCMonth() &&
         this.getUTCDate() === a.getUTCDate();
 };
 
-// Datatypes
-const MicroForm = require('./js/MicroForm');
-const DataAccess = require('../data/DataAccess');
-const LocalCache = require('../data/LocalCache');
-const CacheView = require('../data/CacheView');
+// Datatypess
+import MicroForm from 'MicroForm';
+import CacheView from 'CacheView';
+import DataAccess from 'DataAccess';
+import LocalCache from 'LocalCache';
+import 'style.css';
 
 let typeFormMap = new Map();
 let currentDay = new Date(Date.now());
@@ -44,7 +45,7 @@ function addListeners() {
 
     datatypes.forEach(type => {
         let typeForm = document.querySelector('[data-overlayname="' + type.typeName.toLowerCase() + 'Form"]');
-        if(typeForm !== null){
+        if (typeForm !== null) {
             typeFormMap.set(type, new MicroForm(typeForm, type));
         }
     });
@@ -61,7 +62,9 @@ DataAccess.setOnReady(() => {
     console.time("Data population");
     let populate = DataAccess.populateType();
     datatypes.forEach(type => {
-        populate = populate.then(() => {return DataAccess.populateType(type)});
+        populate = populate.then(() => {
+            return DataAccess.populateType(type)
+        });
     });
     populate.finally(() => {
         // Done with loading, hide the loading overlay

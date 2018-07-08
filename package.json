@@ -11,8 +11,13 @@
   },
   "dependencies": {
     "dexie": "^1.5.1",
+    "electron": "latest"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
     "mustache": "^2.3.0",
-    "electron": "latest",
+    "style-loader": "^0.21.0",
     "webpack": "latest",
     "webpack-cli": "latest"
   }
