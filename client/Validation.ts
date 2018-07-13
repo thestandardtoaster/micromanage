@@ -69,7 +69,7 @@ export default class Validation {
                     type: ValidationType.Unique,
                     run: function (f: Field) {
                         let valid = true;
-                        LocalCache.forAllOfType(f.getType(), item => {
+                        LocalCache.forAllOfType(typeof f.getType(), item => {
                             valid = valid && !(item[f.getFieldName()] === f.getValue());
                         });
 

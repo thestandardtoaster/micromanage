@@ -1,14 +1,24 @@
+import Dexie from "dexie";
+
 const fs = require('fs');
-const Dexie = require('dexie');
-const PersistableEntity = require("./PersistableEntity.js");
-const LocalCache = require("./LocalCache.js");
+
+import PersistableEntity from 'data/PersistableEntity';
+import LocalCache from 'data/LocalCache';
 
 class DataAccess {
+    ready: boolean;
+    db: Dexie;
+    onReady: (() => void)[];
+    tableMap: Map<string, Dexie.Table<any, any>>;
+    Promise: typeof Dexie.Promise;
+
+    static instance: DataAccess;
+
     constructor() {
         this.ready = false;
         this.db = new Dexie('micromanage');
         this.onReady = [];
-        fs.readFile('./backend/dbstructure.json', 'utf-8', (error, data) => {
+        fs.readFile('./backend/dbstructure.json', 'utf-8', (error: Error, data: string) => {
             if (error) {
                 console.error("Unable to load database format:" + error.stack);
             } else {
@@ -18,7 +28,7 @@ class DataAccess {
                         console.error("Unable to open database " + error.stack);
                     }).finally(() => {
                         this.ready = true;
-                        this.onReady.forEach(item => item.call());
+                        this.onReady.forEach(item => item());
                     });
                 } catch (error) {
                     console.error("Unable to set database format:" + error.stack);
@@ -40,7 +50,7 @@ class DataAccess {
         return this.db;
     }
 
-    registerType(type, table) {
+    registerType(type: string, table: Dexie.Table<any, any>) {
         if (this.tableMap.has(type)) {
             console.warn("Duplicate datatype registration attempted for type " + type);
             return;
@@ -48,7 +58,7 @@ class DataAccess {
         this.tableMap.set(type, table);
     }
 
-    setOnReady(func) {
+    setOnReady(func: () => void) {
         if (this.ready) {
             func();
         } else {
@@ -56,13 +66,10 @@ class DataAccess {
         }
     }
 
-    save(persistable) {
-        if (!(persistable instanceof PersistableEntity)) {
-            throw new TypeError("Attempted to save object of non-persistable type " + persistable.constructor + ".");
-        }
+    save(persistable: PersistableEntity) {
         let object = persistable._construct();
 
-        let table = this.tableMap.get(persistable.constructor);
+        let table = this.tableMap.get(typeof persistable);
         return this.db.transaction('rw', table, function () {
             table.add(object);
         }).then(function () {
@@ -74,17 +81,14 @@ class DataAccess {
         });
     }
 
-    saveAll(persistables) { // NOTE: only takes as list of objects with the same type
+    saveAll(persistables: PersistableEntity[]) {
         if (persistables.length > 0) {
-            let toAdd = [];
+            let toAdd: object[] = [];
             persistables.forEach(p => {
-                if (!(p instanceof PersistableEntity)) {
-                    throw new TypeError("Attempted to save object of non-persistable type " + persistable[0].constructor.name + ".");
-                }
                 toAdd.push(p._construct());
             });
 
-            let table = this.tableMap.get(persistables[0].constructor);
+            let table = this.tableMap.get(typeof persistables[0]);
             return this.db.transaction('rw', table, function () {
                 table.bulkAdd(toAdd);
             }).then(function () {
@@ -97,29 +101,25 @@ class DataAccess {
         }
     }
 
-    delete(persistable) {
-        if (!(persistable instanceof PersistableEntity)) {
-            throw new TypeError("Attempted to delete object of non-persistable type " + persistable.constructor + ".");
-        }
-
-        let table = this.tableMap.get(persistable.constructor);
+    delete(persistable: PersistableEntity) {
+        let table = this.tableMap.get(typeof persistable);
         return this.db.transaction('rw', table, function () {
             table.delete(table.get({name: persistable.name}));
         }).then(function () {
-            console.log(persistable.constructor.type + " " + persistable.name + " deleted from db.");
+            console.log(typeof persistable + " " + persistable.name + " deleted from db.");
         }).catch(error => {
-            console.log(persistable.constructor.type + " " + persistable.name + " not deleted from db. \n" + error.stack);
+            console.log(typeof persistable + " " + persistable.name + " not deleted from db. \n" + error.stack);
         }).finally(() => {
             LocalCache.removeItem(persistable);
         })
     }
 
-    forAllOfType(type, operation) {
+    forAllOfType(type: string, operation: (obj: PersistableEntity) => void) {
         let table = this.tableMap.get(type);
         if (table !== undefined) {
             return this.db.transaction('r', table, () => {
                 table.each(obj => {
-                    operation(type.copy(obj));
+                    operation(Object.create(obj));
                 });
             });
         }
@@ -127,10 +127,10 @@ class DataAccess {
         return Dexie.Promise.resolve(0);
     }
 
-    populateType(type) {
-        let collected = [];
+    populateType(type: string) {
+        let collected: PersistableEntity[] = [];
         return this.forAllOfType(type, obj => {
-            collected.push(type.copy(obj));
+            collected.push(Object.create(obj));
         }).finally(() => {
             LocalCache.addItems(collected);
         });
@@ -140,4 +140,4 @@ class DataAccess {
 const _dataAccessInstance = DataAccess.getSingleton();
 _dataAccessInstance.Promise = Dexie.Promise;
 
-module.exports = _dataAccessInstance;
+export default _dataAccessInstance;

@@ -1,7 +1,8 @@
-export default class PersistableEntity {
+export default abstract class PersistableEntity {
     name: string;
     description: string;
     id: number;
+    [key : string] : any;
     static typeName : string = "Persistable";
     static formName : string = "nah";
 

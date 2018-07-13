@@ -1,18 +1,35 @@
 const Mustache = require('mustache');
 
-let exporting = class CacheView {
-    constructor(parent, template, predicate, ...types) {
+import PersistableEntity from "./PersistableEntity";
+
+interface DataNode extends Node {
+    data: PersistableEntity;
+}
+
+export default class CacheView {
+    parent: HTMLElement;
+    template: string;
+    predicate: (obj: PersistableEntity) => boolean;
+    types: string[];
+    items: Map<PersistableEntity, DataNode>;
+    comparator: (a: PersistableEntity, b: PersistableEntity) => number;
+
+    static templates: Map<string, string>;
+    static parser: DOMParser;
+
+    constructor(parent: HTMLElement, template: string,
+                predicate: (obj: PersistableEntity) => boolean,
+                ...types: string[]) {
         this.parent = parent;
         this.template = template;
         this.predicate = predicate;
         this.types = types;
 
-        // this.items = map<datatype, DOM element>
         this.items = new Map();
         this.comparator = () => 0;
     }
 
-    hasType(type) {
+    hasType(type: string) {
         return this.types.includes(type);
     }
 
@@ -20,26 +37,26 @@ let exporting = class CacheView {
         this.items.clear();
     }
 
-    contains(item) {
+    contains(item: PersistableEntity) {
         return this.items.has(item);
     }
 
-    addItem(item) {
+    addItem(item: PersistableEntity) {
         let domElement = CacheView.runTemplate(this.template, item);
         this.items.set(item, domElement);
         this.render();
     }
 
-    addItems(items) {
+    addItems(items: PersistableEntity[]) {
         items.forEach(item => {
             this.items.set(item, CacheView.runTemplate(this.template, item));
         });
         this.render();
     }
 
-    removeItem(element) {
-        this.parent.removeChild(element);
-        this.items.delete(element);
+    removeItem(item: PersistableEntity) {
+        this.parent.removeChild(this.items.get(item));
+        this.items.delete(item);
     }
 
     render() {
@@ -55,7 +72,7 @@ let exporting = class CacheView {
         this.parent.appendChild(frag);
     }
 
-    static addTemplates(...templates) {
+    static addTemplates(...templates: string[]) {
         if (this.templates === undefined) {
             this.templates = new Map();
         }
@@ -66,7 +83,7 @@ let exporting = class CacheView {
         });
     }
 
-    static runTemplate(templateName, object) {
+    static runTemplate(templateName: string, object: PersistableEntity) {
         if (!this.templates.has(templateName)) {
             throw Error("Template " + templateName + " not added to cache.");
         }
@@ -74,11 +91,9 @@ let exporting = class CacheView {
             this.parser = new DOMParser();
         }
         let template = this.templates.get(templateName);
-        let obj = this.parser.parseFromString(Mustache.render(template, object), "text/html");
-        obj = obj.getElementsByTagName("body")[0].firstChild;
+        let document = this.parser.parseFromString(Mustache.render(template, object), "text/html");
+        let obj = <DataNode>document.getElementsByTagName("body")[0].firstChild;
         obj.data = object;
         return obj;
     }
 };
-
-module.exports = exporting;

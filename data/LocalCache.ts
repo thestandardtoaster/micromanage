@@ -1,8 +1,12 @@
 import PersistableEntity from 'data/PersistableEntity';
+import CacheView from 'data/CacheView';
 
 class _LocalCache {
+    typeCacheMap: Map<string, Array<PersistableEntity>>;
+    views: CacheView[];
+    static instance: _LocalCache;
+
     constructor() {
-        // typeCacheMap = <type : array<instance of type>>
         this.typeCacheMap = new Map();
         this.views = [];
     }
@@ -14,61 +18,56 @@ class _LocalCache {
         return this.instance;
     }
 
-    add(obj) {
-        if (!(obj instanceof PersistableEntity)) {
-            throw new TypeError("Attempt to cache non-persistable object.");
-        }
-        let cache = this.typeCacheMap.get(obj.constructor);
+    add(obj: PersistableEntity) {
+        let cache = this.typeCacheMap.get(typeof obj);
         if (cache === undefined) {
-            this.typeCacheMap.set(obj.constructor, []);
-            cache = this.typeCacheMap.get(obj.constructor);
+            this.typeCacheMap.set(typeof obj, []);
+            cache = this.typeCacheMap.get(typeof obj);
         }
         if (!cache.includes(obj)) {
             cache.push(obj);
         }
 
-        this.viewsOfType(obj.constructor).forEach(view => {
+        this.viewsOfType(typeof obj).forEach(view => {
             view.addItem(obj);
         });
     }
 
-    addItems(objs) { // NOTE: All objects should be the same type
-        if(objs.length > 0){
-            let cache = this.typeCacheMap.get(objs[0].constructor);
+    addItems(objs: PersistableEntity[]) { // NOTE: All objects should be the same type
+        if (objs.length > 0) {
+            let cache = this.typeCacheMap.get(typeof objs[0]);
             if (cache === undefined) {
-                this.typeCacheMap.set(objs[0].constructor, []);
-                cache = this.typeCacheMap.get(objs[0].constructor);
+                this.typeCacheMap.set(typeof objs[0], []);
+                cache = this.typeCacheMap.get(typeof objs[0]);
             }
             objs.forEach(obj => {
-                if (!(obj instanceof PersistableEntity)) {
-                    throw new TypeError("Attempt to cache non-persistable object.");
-                }
-                if(!cache.includes(obj)){
+                if (!cache.includes(obj)) {
                     cache.push(obj);
                 }
             });
 
-            this.viewsOfType(objs[0].constructor).forEach(view => {
+            this.viewsOfType(typeof objs[0]).forEach(view => {
                 view.addItems(objs);
             });
         }
     }
 
-    removeItem(obj) {
-        let cache = this.typeCacheMap.get(obj.constructor);
+    removeItem(obj: PersistableEntity) {
+        let cache = this.typeCacheMap.get(typeof obj);
         if (cache !== undefined) {
-            cache.remove(obj);
-            this.viewsOfType(obj.constructor).forEach(view => {
+            cache.splice(cache.indexOf(obj), 1);
+
+            this.viewsOfType(typeof obj).forEach(view => {
                 view.removeItem(obj);
             });
         }
     }
 
-    viewsOfType(type) {
+    viewsOfType(type: string) {
         return this.views.filter(view => view.hasType(type));
     }
 
-    addView(view) {
+    addView(view: CacheView) {
         this.views.push(view);
         this.populateView(view);
         view.render();
@@ -78,15 +77,15 @@ class _LocalCache {
         this.views.forEach(view => view.render());
     }
 
-    populateView(view) {
-        let index;
-        if (index = this.views.indexOf(view) > 0) {
-            view.types.forEach(type => this.views[index].addItems(this.typeCacheMap.get(type)));
+    populateView(view: CacheView) {
+        let index: number;
+        if ((index = this.views.indexOf(view)) > 0) {
+            view.types.forEach(type => this.views[index].addItems(this.typeCacheMap.get(typeof type)));
         }
     }
 
-    forAllOfType(type, action) {
-        if(this.typeCacheMap.has(type)){
+    forAllOfType(type: string, action: (obj: PersistableEntity) => void) {
+        if (this.typeCacheMap.has(type)) {
             this.typeCacheMap.get(type).forEach(action);
         }
     }
