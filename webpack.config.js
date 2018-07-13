@@ -1,13 +1,23 @@
 const path = require('path');
 
 module.exports = {
-    entry: "./client/js/clientMain.js",
+    entry: [
+        "./client/client.html",
+        "./client/ClientController.js"
+    ],
+    mode: 'development',
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [
+            {
+                test: /\.html$/,
+                use: [
+                    'html-loader'
+                ]
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -20,6 +30,12 @@ module.exports = {
                 use: [
                     'file-loader'
                 ]
+            },
+            {
+                test: /\.ts$/,
+                use: [
+                    'ts-loader'
+                ]
             }
         ]
     },
@@ -27,8 +43,8 @@ module.exports = {
         modules: [
             path.resolve(__dirname, './node_modules'),
             path.resolve(__dirname, './data'),
-            path.resolve(__dirname, './client/js'),
-            path.resolve(__dirname, './client/css')
+            path.resolve(__dirname, './client'),
+            path.resolve(__dirname, './assets/css/')
         ]
     },
     node: {

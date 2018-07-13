@@ -1,6 +1,7 @@
 // Libs
 console.time("Initialize");
 const {remote} = require('electron');
+import './client.html';
 
 Date.prototype.sameDay = function (a) {
     return this.getUTCFullYear() === a.getUTCFullYear() &&

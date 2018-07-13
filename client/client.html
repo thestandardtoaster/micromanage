@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="{ './style.css' }"/>
         <script type="text/javascript">
             const Testing = require("../testing/Testing");
-            const Overlays = require("./js/Overlays");
+            const Overlays = require("./Overlays");
             const {MicroEvent, MicroProject, MicroTask} = require('../data/datatypes');
             const datatypes = [MicroEvent, MicroProject, MicroTask];
 
@@ -132,6 +132,6 @@
             </span>
         </div>
     </script>
-    <script type="text/javascript" async src="./js/clientMain.js"></script>
+    <script type="text/javascript" async src="ClientController.js"></script>
     </body>
 </html>

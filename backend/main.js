@@ -4,7 +4,7 @@ let mainWindow;
 
 function createWindow () {
     mainWindow = new BrowserWindow({ frame: false, webPreferences: { devTools: true }});
-    mainWindow.loadURL("file:///" + __dirname + "/../client/index.html");
+    mainWindow.loadURL("file:///" + __dirname + "/index.html");
     mainWindow.on('close', function(){ mainWindow = null });
     mainWindow.setMinimizable(true);
     mainWindow.show();
@@ -14,5 +14,5 @@ app.on('ready', function(){
 });
 
 ipcMain.on("reload", e => {
-    mainWindow.loadURL("file:///" + __dirname + "/../client/index.html");
+    mainWindow.loadURL("file:///" + __dirname + "/index.html");
 });

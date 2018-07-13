@@ -1,6 +1,6 @@
-const Field = require("./Field.js");
-const DataAccess = require("../../data/DataAccess");
-const LocalCache = require("../../data/LocalCache");
+const Field = require("./Field.ts");
+const DataAccess = require("../data/DataAccess");
+const LocalCache = require("../data/LocalCache");
 const Overlays = require("./Overlays");
 
 NodeList.prototype.forEach = Array.prototype.forEach;

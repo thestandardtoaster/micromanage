@@ -1,11 +1,16 @@
-let LocalCache = require("../../data/LocalCache");
+let LocalCache = require("../data/LocalCache");
+import Field from 'client/Field';
 
-let ValidationTypes = {};
-ValidationTypes.NotEmpty = 0;
-ValidationTypes.InRange = 1;
-ValidationTypes.Unique = 2;
+enum ValidationTypes {
+    NotEmpty = 0,
+    InRange,
+    Unique
+}
 
-let exporting = class Validation {
+export default class Validation {
+    validators : Array<Validation>;
+    field : Field;
+
     constructor(field, args) {
         this.validators = [];
         this.field = field;

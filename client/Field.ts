@@ -1,7 +1,14 @@
-let Validation = require("./Validation.js");
+import Validation from "client/Validation.js";
+import PersistableEntity from "data/PersistableEntity.js";
 
-module.exports = class Field {
-    constructor(type, input) {
+export default class Field {
+    inputElement: HTMLElement;
+    type: new() => PersistableEntity;
+    validationElement: HTMLElement;
+    fieldName: string;
+    validator: Validation;
+
+    constructor(type : new() => PersistableEntity, input : HTMLElement) {
         this.inputElement = input;
         this.type = type;
         if (input.parentElement.nodeName !== "LABEL") {
