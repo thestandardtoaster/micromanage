@@ -1,30 +1,38 @@
-let LocalCache = require("../data/LocalCache");
+import LocalCache from 'data/LocalCache.js';
 import Field from 'client/Field';
 
-enum ValidationTypes {
+enum ValidationType {
     NotEmpty = 0,
     InRange,
     Unique
 }
 
 export default class Validation {
-    validators : Array<Validation>;
-    field : Field;
+    validators: {
+        type: ValidationType,
+        min?: number,
+        max?: number,
+        run: (f: Field) => {
+            valid: boolean,
+            message: string,
+        }
+    }[];
+    field: Field;
 
-    constructor(field, args) {
+    constructor(field: Field, args: string) {
         this.validators = [];
         this.field = field;
 
         // Parse the validation input
-        args = args.split(' ');
-        args.forEach(arg => {
+        let argsSplit = args.split(' ');
+        argsSplit.forEach(arg => {
             if (arg.substr(0, 8) === "notempty") {   // format: notempty
                 this.validators.push({
-                    type: ValidationTypes.NotEmpty,
-                    run: function (f) {
+                    type: ValidationType.NotEmpty,
+                    run: function (f: Field) {
                         let valid = !f.isEmpty();
                         let message = "";
-                        if(!valid){
+                        if (!valid) {
                             message = "Field " + f.getFriendlyName().toLowerCase() + " cannot be empty.";
                         }
                         return {
@@ -40,10 +48,10 @@ export default class Validation {
                     let max = parseFloat(nums[1]);
 
                     this.validators.push({
-                        type: ValidationTypes.InRange,
+                        type: ValidationType.InRange,
                         min: min,
                         max: max,
-                        run: function (f) {
+                        run: function (f: Field) {
                             let valid = min <= f.getValue() && max >= f.getValue();
                             let message = "";
                             if (!valid) {
@@ -58,14 +66,15 @@ export default class Validation {
                 }
             } else if (arg === "unique") {           // format: unique
                 this.validators.push({
-                    run: function (f) {
+                    type: ValidationType.Unique,
+                    run: function (f: Field) {
                         let valid = true;
                         LocalCache.forAllOfType(f.getType(), item => {
-                            valid &= !(item[f.getFieldName()] === f.getValue());
+                            valid = valid && !(item[f.getFieldName()] === f.getValue());
                         });
 
                         let message = "";
-                        if(!valid){
+                        if (!valid) {
                             message = f.getType().typeName + " '" + f.getValue() + "' already exists.";
                         }
                         return {
@@ -80,10 +89,10 @@ export default class Validation {
 
     run() {
         let validationPassed = true;
-        let messages = [];
+        let messages: string[] = [];
         this.validators.forEach(v => {
             let result = v.run(this.field);
-            validationPassed &= result.valid;
+            validationPassed = validationPassed && result.valid;
             messages.push(result.message);
         });
         return {
@@ -92,5 +101,3 @@ export default class Validation {
         };
     }
 };
-
-module.exports = exporting;

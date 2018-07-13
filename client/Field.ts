@@ -1,14 +1,14 @@
 import Validation from "client/Validation.js";
-import PersistableEntity from "data/PersistableEntity.js";
+import PersistableEntity from "data/PersistableEntity";
 
 export default class Field {
-    inputElement: HTMLElement;
-    type: new() => PersistableEntity;
+    inputElement: HTMLInputElement | HTMLTextAreaElement;
+    type: typeof PersistableEntity;
     validationElement: HTMLElement;
     fieldName: string;
     validator: Validation;
 
-    constructor(type : new() => PersistableEntity, input : HTMLElement) {
+    constructor(type : typeof PersistableEntity, input : HTMLInputElement | HTMLTextAreaElement) {
         this.inputElement = input;
         this.type = type;
         if (input.parentElement.nodeName !== "LABEL") {
@@ -61,7 +61,7 @@ export default class Field {
                 }
                 return new Date(Date.parse(this.inputElement.value + offsetString));
             default:
-                console.warn("Unable to retrieve value from field " + this.inputElement.parentElement().textContent);
+                console.warn("Unable to retrieve value from field " + this.inputElement.parentNode.textContent);
                 break;
         }
     }
@@ -74,7 +74,7 @@ export default class Field {
         }
     }
 
-    getType() {
+    getType() : typeof PersistableEntity {
         return this.type;
     }
 
@@ -94,7 +94,7 @@ export default class Field {
         this.inputElement.value = '';
     }
 
-    setValidation(valid, message) {
+    setValidation(valid : boolean, message : string) {
         if (valid) {
             this.validationElement.classList.remove("invalid");
             this.validationElement.classList.add("valid");

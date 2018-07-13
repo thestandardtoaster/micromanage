@@ -1,6 +1,6 @@
-const PersistableEntity = require('./PersistableEntity');
+import PersistableEntity from 'data/PersistableEntity';
 
-class LocalCache {
+class _LocalCache {
     constructor() {
         // typeCacheMap = <type : array<instance of type>>
         this.typeCacheMap = new Map();
@@ -9,7 +9,7 @@ class LocalCache {
 
     static getSingleton() {
         if (this.instance === undefined) {
-            this.instance = new LocalCache();
+            this.instance = new _LocalCache();
         }
         return this.instance;
     }
@@ -92,6 +92,6 @@ class LocalCache {
     }
 }
 
-let exporting = LocalCache.getSingleton();
+let LocalCache = _LocalCache.getSingleton();
 
-module.exports = exporting;
+export default LocalCache;
